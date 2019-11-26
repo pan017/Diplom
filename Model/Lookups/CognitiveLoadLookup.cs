@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace Diplom.Model.Lookups
 {
-    public class CognitiveLoadLookup : BaseLookup
+    public class CognitiveLoad : BaseLookup
     {
-
+        public virtual CognetiveLoadType CognetiveLoadType { get; set; }
     }
 }

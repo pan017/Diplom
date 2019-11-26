@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -18,18 +19,23 @@ namespace Diplom
         public AuthForm()
         {
             InitializeComponent();
+            Service.DBInit.init();
         }
 
         private void AuthForm_Load(object sender, EventArgs e)
         {
-            ViewModel db = new ViewModel();
-         //   db.Group.Add(new Model.Lookups.Group { Name = "680961" });
-          //  db.SaveChanges();
+        
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
+            ViewModel db = new ViewModel();
+            var a = db.CognetiveLoadType.ToList();
             InputBox inputBox = new InputBox();
+
+            inputBox.addComboBox(a);
+            inputBox.addComboBox(a);
+            inputBox.addComboBox(a);
             if (inputBox.getString() == "12345")
             {
                 this.Hide();

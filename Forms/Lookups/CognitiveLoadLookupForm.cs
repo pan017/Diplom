@@ -36,7 +36,7 @@ namespace Diplom.Forms.Lookups
         private void AddButton_Click(object sender, EventArgs e)
         {
             InputBox inputBox = new InputBox();
-            CognitiveLoadLookup newCognitiveLoad = new CognitiveLoadLookup();
+            CognitiveLoad newCognitiveLoad = new CognitiveLoad();
             newCognitiveLoad.Name = inputBox.getString();
             if (!String.IsNullOrEmpty(newCognitiveLoad.Name))
             {
@@ -49,7 +49,7 @@ namespace Diplom.Forms.Lookups
 
         private void EditButton_Click(object sender, EventArgs e)
         {
-            CognitiveLoadLookup edit = db.CognitiveLoad.First(x => x.id == ((CognitiveLoadLookup)LookupBindingSource.Current).id);
+            CognitiveLoad edit = db.CognitiveLoad.First(x => x.id == ((CognitiveLoad)LookupBindingSource.Current).id);
 
             InputBox inputBox = new InputBox();
             edit.Name = inputBox.getString(edit.Name);
@@ -64,7 +64,7 @@ namespace Diplom.Forms.Lookups
 
         private void RemoveButton_Click(object sender, EventArgs e)
         {
-            CognitiveLoadLookup removed = db.CognitiveLoad.First(x => x.id == ((CognitiveLoadLookup)LookupBindingSource.Current).id);
+            CognitiveLoad removed = db.CognitiveLoad.First(x => x.id == ((CognitiveLoad)LookupBindingSource.Current).id);
             try
             {
                 db.CognitiveLoad.Remove(removed);

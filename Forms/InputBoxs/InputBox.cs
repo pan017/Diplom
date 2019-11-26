@@ -10,6 +10,46 @@ namespace Diplom.Forms
     public class InputBox : Form
     {
         TextBox textBox;
+        protected Button buttonOK;
+        protected Button buttonCancel;
+        Control lastControl;
+
+
+        public void AddControl(Control control)
+        {
+            buttonOK.Location = new Point(105, buttonOK.Location.Y + 35);
+            buttonCancel.Location = new Point(190, buttonCancel.Location.Y + 35);
+            control.Location = new Point(lastControl.Location.X, lastControl.Location.Y + 25);
+            lastControl = control;
+            this.Controls.Add(control);
+        }
+        public void addComboBox(object items, string caption = "Выберите тип: ") 
+        {
+            buttonOK.Location = new Point(105, buttonOK.Location.Y + 50);
+            buttonCancel.Location = new Point(190, buttonCancel.Location.Y + 50);
+
+            Label label2 = new Label();
+            label2.AutoSize = false;
+            label2.Size = new Size(250, 25);
+            label2.Font = new Font(label2.Font, FontStyle.Regular);
+            label2.Location = new Point(20, lastControl.Location.Y + 25);// new Point(20, 75);
+            label2.Text = caption;
+            lastControl = label2;
+            this.Controls.Add(label2);
+
+            ComboBox cb = new ComboBox();
+            cb.Size = new Size(150, 25);
+            cb.Location = new Point(20, lastControl.Location.Y + 25);//new Point(20, 100);
+            cb.DataSource = items;
+            this.Controls.Add(cb);
+
+
+          
+            this.Controls.Add(label2);
+            lastControl = cb;
+            this.Size = new Size(this.Size.Width, this.Size.Height + 50);
+        }
+        
 
         public InputBox()
         {
@@ -28,6 +68,7 @@ namespace Diplom.Forms
             textBox.Location = new Point(20, 50);
             textBox.Text = "";
 
+            lastControl = textBox;
             this.Controls.Add(textBox);
 
             textBox.Show();
@@ -53,7 +94,7 @@ namespace Diplom.Forms
 
             /* Создаем кнопку "OK". -> */
 
-            Button buttonOK = new Button();
+            buttonOK = new Button();
             buttonOK.Size = new Size(80, 25);
             buttonOK.Location = new Point(105, 75);
             buttonOK.DialogResult = System.Windows.Forms.DialogResult.OK;
@@ -67,7 +108,7 @@ namespace Diplom.Forms
 
             /* Создаем кнопку "Cancel". -> */
 
-            Button buttonCancel = new Button();
+            buttonCancel = new Button();
             buttonCancel.Size = new Size(80, 25);
             buttonCancel.Location = new Point(190, 75);
             buttonCancel.Text = "Cancel";
@@ -77,7 +118,7 @@ namespace Diplom.Forms
             buttonCancel.Show();
 
             buttonCancel.Click += new EventHandler(buttonCancel_Click);
-
+            
             /* Создаем кнопку "OK". <- */
         }
 

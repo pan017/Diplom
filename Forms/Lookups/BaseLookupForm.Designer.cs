@@ -30,10 +30,10 @@
         {
             this.components = new System.ComponentModel.Container();
             this.LookupDataGridView = new System.Windows.Forms.DataGridView();
-            this.LookupBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.AddButton = new System.Windows.Forms.Button();
             this.EditButton = new System.Windows.Forms.Button();
             this.RemoveButton = new System.Windows.Forms.Button();
+            this.LookupBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.LookupDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.LookupBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -57,6 +57,7 @@
             this.AddButton.TabIndex = 2;
             this.AddButton.Text = "Добавить";
             this.AddButton.UseVisualStyleBackColor = true;
+          //  this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
             // 
             // EditButton
             // 

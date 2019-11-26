@@ -36,7 +36,7 @@ namespace Diplom.Forms.Tests
         List<double> clickTimes = new List<double>();
 
         bool cognitiveLoad = Properties.Settings.Default.FirtsTestCognitiveLoad;
-        List<CognitiveLoadLookup> cognitiveLoadLookup;
+        List<CognitiveLoad> cognitiveLoadLookup;
         //   List<ReactionTimes> results;
         private void DistributionOfAttentionForm_Load(object sender, EventArgs e)
         {
@@ -44,28 +44,6 @@ namespace Diplom.Forms.Tests
             
         }
       
-
-        //private async void label1_Click(object sender, EventArgs e)
-        //{
-        //    await Task.Run(() =>
-        //    {
-        //        //Stopwatch SW = new Stopwatch(); // Создаем объект
-        //         // Запускаем
-
-
-        //        for (; counter < 5; counter++)
-        //        {
-        //            label2.Invoke(new Action(() => label2.Text = (counterMaxValue - counter).ToString()));
-        //            //label2.Text = (counterMaxValue - counter).ToString();
-        //            Thread.Sleep(new Random().Next(1000, 5000));
-        //            actionTimes.Add(SW.Elapsed.TotalMilliseconds);
-        //            label1.ForeColor = System.Drawing.Color.FromArgb(new Random().Next(1, 255), new Random().Next(1, 255), new Random().Next(1, 255));
-
-        //        }
-        //        SW.Stop(); //Останавливаемхз
-        //    });
-        //}
-
         private async void DistributionOfAttentionForm_KeyDown(object sender, KeyEventArgs e)
         {
             await Task.Run(() =>
