@@ -102,9 +102,6 @@
     <Compile Include="Forms\GroupsForm.Designer.cs">
       <DependentUpon>GroupsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\InputBoxs\CognetiveLoadInputBox.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Forms\InputBoxs\InputBox.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -192,6 +189,7 @@
     <Compile Include="Model\Lookups\CognetiveLoadTypeLookup.cs" />
     <Compile Include="Model\Lookups\CognitiveLoadLookup.cs" />
     <Compile Include="Model\Lookups\DriversLicense.cs" />
+    <Compile Include="Model\Lookups\TestStage.cs" />
     <Compile Include="Model\ViewModel.cs" />
     <Compile Include="Model\Base\BaseLookup.cs" />
     <Compile Include="Model\Base\BaseObject.cs" />

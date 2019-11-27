@@ -31,8 +31,7 @@ namespace Diplom.Forms
                     item.Profile.Group,
                     "",
                     item.BeginTestDate.ToString(),
-                    item.EndTestDate.ToString(),
-                    item.CognetiveLoad == true ? "Да" : "Нет");
+                    item.EndTestDate.ToString());
             }
         }
         ViewModel db = new ViewModel();

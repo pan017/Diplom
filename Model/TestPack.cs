@@ -14,6 +14,6 @@ namespace Diplom.Model
         public DateTime BeginTestDate { get; set; }
         public DateTime EndTestDate { get; set; }
         public virtual TestType TestType { get; set; }
-        public bool CognetiveLoad { get; set; }
+
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Diplom.Model.Lookups;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,8 +9,11 @@ namespace Diplom.Model
 {
     public class TestResults:Base.BaseObject
     {
-        public TestPack TestPack { get; set; }
-        public List<Lookups.ReactionTime> ReactionTimes { get; set; }
+        public DateTime BeginTestDate { get; set; }
+        public DateTime EndTestDate { get; set; }
+        public virtual TestPack TestPack { get; set; }     
+        public virtual TestStage TestStage { get; set; }
+        public List<ReactionTime> ReactionTimes { get; set; }
 
     }
 }

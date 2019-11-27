@@ -13,6 +13,8 @@ namespace Diplom.Model
 
         public ViewModel() :base("DataBaseConnection")
         { }
+
+        public DbSet<TestStage> TestStage { get; set; }
         public DbSet<CognetiveLoadType> CognetiveLoadType { get; set; }
         public DbSet<CognitiveLoad> CognitiveLoad { get; set; }
         public DbSet<DriversLicense> DriversLicense { get; set; }

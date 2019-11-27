@@ -44,6 +44,17 @@ namespace Diplom.Service
                 db.CognetiveLoadType.Add(new CognetiveLoadType() { Name = "Интеллектуальный" });
                 db.CognetiveLoadType.Add(new CognetiveLoadType() { Name = "Математичкий" });
             }
+            if(!db.TestType.Any())
+            {
+                db.TestType.Add(new TestType() { Name = "Распределение внимания", TestTypeIndex = 0 });
+                db.TestType.Add(new TestType() { Name = "Время реакции", TestTypeIndex = 1 });
+            }
+            if(!db.TestStage.Any())
+            {
+                db.TestStage.Add(new TestStage() { Name = "Без когнетивной нагрузки", TestStageIndex = 0 });
+                db.TestStage.Add(new TestStage() { Name = "С когнетивной нагрузкой", TestStageIndex = 1 });
+                db.TestStage.Add(new TestStage() { Name = "С звуокой нагрузкой", TestStageIndex = 2 });
+            }
             db.SaveChanges();
         }
     }

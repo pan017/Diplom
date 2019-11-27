@@ -40,6 +40,7 @@
             this.cognitiveLoadWorker = new System.ComponentModel.BackgroundWorker();
             this.endTestButton = new System.Windows.Forms.Button();
             this.settingsButton = new System.Windows.Forms.Button();
+            this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -142,7 +143,11 @@
             this.settingsButton.UseVisualStyleBackColor = true;
             this.settingsButton.Click += new System.EventHandler(this.settingsButton_Click);
             // 
-            // DistributionOfAttentionForm
+            // backgroundWorker2
+            // 
+            this.backgroundWorker2.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker2_DoWork);
+            // 
+            // ReactionTimeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -156,7 +161,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
-            this.Name = "DistributionOfAttentionForm";
+            this.Name = "ReactionTimeForm";
             this.Text = "Распределение внимания";
             this.Activated += new System.EventHandler(this.DistributionOfAttentionForm_Activated);
             this.Load += new System.EventHandler(this.DistributionOfAttentionForm_Load);
@@ -180,5 +185,6 @@
         private System.ComponentModel.BackgroundWorker cognitiveLoadWorker;
         private System.Windows.Forms.Button endTestButton;
         private System.Windows.Forms.Button settingsButton;
+        private System.ComponentModel.BackgroundWorker backgroundWorker2;
     }
 }
