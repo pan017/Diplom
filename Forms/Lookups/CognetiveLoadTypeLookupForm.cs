@@ -21,5 +21,10 @@ namespace Diplom.Forms.Lookups
         {
 
         }
+
+        private void RemoveButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

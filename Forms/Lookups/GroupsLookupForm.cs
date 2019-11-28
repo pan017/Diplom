@@ -41,6 +41,8 @@ namespace Diplom.Forms.Lookups
 
         private void EditButton_Click(object sender, EventArgs e)
         {
+            if (LookupBindingSource.Current == null)
+                return;
             Group edit =db.Group.First(x => x.id == ((Group)LookupBindingSource.Current).id);
 
             InputBox inputBox = new InputBox();
@@ -64,6 +66,8 @@ namespace Diplom.Forms.Lookups
 
         private void RemoveButton_Click(object sender, EventArgs e)
         {
+            if (db.Group.Count() == 0)
+                return;
             Group removedGroup = db.Group.First(x => x.id == ((Group)LookupBindingSource.Current).id);
             try
             {

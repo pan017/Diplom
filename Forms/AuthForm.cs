@@ -54,5 +54,17 @@ namespace Diplom
             ReactionTimeForm distributionOfAttentionForm = new ReactionTimeForm();
             distributionOfAttentionForm.ShowDialog();
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            DistributionOfAttention distributionOfAttention = new DistributionOfAttention();
+            distributionOfAttention.ShowDialog();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            SettingsForm settingsForm = new SettingsForm();
+            settingsForm.ShowDialog();
+        }
     }
 }

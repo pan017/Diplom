@@ -28,16 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
+            ((System.ComponentModel.ISupportInitialize)(this.LookupBindingSource)).BeginInit();
             this.SuspendLayout();
+            // 
+            // RemoveButton
+            // 
+            this.RemoveButton.Click += new System.EventHandler(this.RemoveButton_Click);
             // 
             // CognetiveLoadTypeLookupForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(355, 405);
             this.Name = "CognetiveLoadTypeLookupForm";
-            this.Text = "CognetiveLoadTypeLookupForm";
+            this.Text = "Справочник видов когнетивной нагрузки";
             this.Load += new System.EventHandler(this.CognetiveLoadTypeLookupForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.LookupBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }

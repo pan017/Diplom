@@ -58,7 +58,7 @@ namespace Diplom.Forms
             this.MinimizeBox = false;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Size = new Size(300, 150);
-            this.Text = "Input box";
+            this.Text = "Ввод значения";
 
             /* Создаем текстовое поле. -> */
 

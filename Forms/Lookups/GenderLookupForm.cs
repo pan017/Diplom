@@ -49,6 +49,8 @@ namespace Diplom.Forms.Lookups
 
         private void EditButton_Click(object sender, EventArgs e)
         {
+            if (LookupBindingSource.Current == null)
+                return;
             Gender edit = db.Gender.First(x => x.id == ((Gender)LookupBindingSource.Current).id);
 
             InputBox inputBox = new InputBox();
@@ -64,6 +66,8 @@ namespace Diplom.Forms.Lookups
 
         private void RemoveButton_Click(object sender, EventArgs e)
         {
+            if (db.Gender.Count() == 0)
+                return;
             Gender removed = db.Gender.First(x => x.id == ((Gender)LookupBindingSource.Current).id);
             try
             {

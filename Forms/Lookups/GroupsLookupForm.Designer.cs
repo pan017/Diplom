@@ -49,7 +49,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(353, 407);
             this.Name = "GroupsLookupForm";
-            this.Text = "GroupsLookupForm";
+            this.Text = "Справочник групп";
             this.Load += new System.EventHandler(this.GroupsLookupForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.LookupBindingSource)).EndInit();
             this.ResumeLayout(false);

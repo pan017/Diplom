@@ -39,7 +39,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.cognitiveLoadWorker = new System.ComponentModel.BackgroundWorker();
             this.endTestButton = new System.Windows.Forms.Button();
-            this.settingsButton = new System.Windows.Forms.Button();
             this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -61,9 +60,9 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.Location = new System.Drawing.Point(99, 401);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(573, 24);
+            this.label1.Size = new System.Drawing.Size(617, 24);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Нажимайте \"Пробел\" каждый раз, когда изменится цвет круга";
+            this.label1.Text = "Нажимайте \"Пробел\" каждый раз, когда круг станет черного цвета";
             // 
             // label2
             // 
@@ -71,9 +70,9 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label2.Location = new System.Drawing.Point(12, 9);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(177, 20);
+            this.label2.Size = new System.Drawing.Size(159, 20);
             this.label2.TabIndex = 2;
-            this.label2.Text = "Осталось попыток: 25";
+            this.label2.Text = "Осталось попыток: ";
             this.label2.Visible = false;
             // 
             // TesteeComboBox
@@ -97,7 +96,7 @@
             // 
             // BeginTestButton
             // 
-            this.BeginTestButton.Location = new System.Drawing.Point(174, 225);
+            this.BeginTestButton.Location = new System.Drawing.Point(315, 225);
             this.BeginTestButton.Name = "BeginTestButton";
             this.BeginTestButton.Size = new System.Drawing.Size(127, 23);
             this.BeginTestButton.TabIndex = 5;
@@ -113,7 +112,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(22, 60);
+            this.label3.Location = new System.Drawing.Point(235, 108);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(0, 24);
             this.label3.TabIndex = 6;
@@ -124,7 +123,7 @@
             // 
             // endTestButton
             // 
-            this.endTestButton.Location = new System.Drawing.Point(398, 225);
+            this.endTestButton.Location = new System.Drawing.Point(315, 225);
             this.endTestButton.Name = "endTestButton";
             this.endTestButton.Size = new System.Drawing.Size(127, 23);
             this.endTestButton.TabIndex = 7;
@@ -132,16 +131,6 @@
             this.endTestButton.UseVisualStyleBackColor = true;
             this.endTestButton.Visible = false;
             this.endTestButton.Click += new System.EventHandler(this.endTestButton_Click);
-            // 
-            // settingsButton
-            // 
-            this.settingsButton.Location = new System.Drawing.Point(315, 273);
-            this.settingsButton.Name = "settingsButton";
-            this.settingsButton.Size = new System.Drawing.Size(127, 23);
-            this.settingsButton.TabIndex = 8;
-            this.settingsButton.Text = "Настройки";
-            this.settingsButton.UseVisualStyleBackColor = true;
-            this.settingsButton.Click += new System.EventHandler(this.settingsButton_Click);
             // 
             // backgroundWorker2
             // 
@@ -152,7 +141,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.settingsButton);
             this.Controls.Add(this.endTestButton);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.BeginTestButton);
@@ -162,8 +150,9 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
             this.Name = "ReactionTimeForm";
-            this.Text = "Распределение внимания";
+            this.Text = "Время реакции";
             this.Activated += new System.EventHandler(this.DistributionOfAttentionForm_Activated);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ReactionTimeForm_FormClosing);
             this.Load += new System.EventHandler(this.DistributionOfAttentionForm_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DistributionOfAttentionForm_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -184,7 +173,6 @@
         private System.Windows.Forms.Label label3;
         private System.ComponentModel.BackgroundWorker cognitiveLoadWorker;
         private System.Windows.Forms.Button endTestButton;
-        private System.Windows.Forms.Button settingsButton;
         private System.ComponentModel.BackgroundWorker backgroundWorker2;
     }
 }

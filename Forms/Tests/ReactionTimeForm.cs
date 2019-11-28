@@ -37,14 +37,15 @@ namespace Diplom.Forms.Tests
         int currentTestIndex = 0;
         List<double> actionTimes = new List<double>();
         List<double> clickTimes = new List<double>();
-
-        bool cognitiveLoad = Properties.Settings.Default.FirtsTestCognitiveLoad;
+        bool isRunning;
+        
         List<CognitiveLoad> cognitiveLoadLookup;
 
         private void DistributionOfAttentionForm_Load(object sender, EventArgs e)
         {
             cognitiveLoadLookup = db.CognitiveLoad.ToList();
             testPack = new TestPack();
+            isRunning = false;
         }
       
         private async void DistributionOfAttentionForm_KeyDown(object sender, KeyEventArgs e)
@@ -74,7 +75,7 @@ namespace Diplom.Forms.Tests
                 MessageBox.Show("Не выбран испытуемый", "Ошибка");
                 return;
             }
-            testPack.TestType = db.TestType.FirstOrDefault(x => x.TestTypeIndex == 0);          
+            testPack.TestType = db.TestType.FirstOrDefault(x => x.TestTypeIndex == 1);          
             testPack.Profile = db.Profile.FirstOrDefault(x => x.id == ((Profile)TesteeComboBox.SelectedItem).id);
             testPack.BeginTestDate = DateTime.Now;
             testPack.EndTestDate = new DateTime(1900, 1, 1);
@@ -89,8 +90,7 @@ namespace Diplom.Forms.Tests
         {
             showTestControls();
             reactionTimes = new List<ReactionTime>();
-            MessageBox.Show("Нажимайте \"Пробел\" каждый раз, когда изменится цвет круга", "Инструкция");
-
+            MessageBox.Show("Нажимайте \"Пробел\" каждый раз, когда круг станет черного цвета", "Инструкция");
             SW = new Stopwatch();
             SW.Start();
         }
@@ -105,12 +105,14 @@ namespace Diplom.Forms.Tests
             {
                 case 0:
                     showInstruction();
+                    isRunning = true;
                     backgroundWorker1.DoWork += backgroundWorker1_DoWork;
                     backgroundWorker1.WorkerSupportsCancellation = true;
                     backgroundWorker1.RunWorkerAsync(); break;
                 case 1:
                     label3.Visible = true;
                     showInstruction();
+                    isRunning = true;
                     cognitiveLoadWorker.DoWork += cognitiveLoadWorker_DoWork;
                     cognitiveLoadWorker.WorkerSupportsCancellation = true;
                     cognitiveLoadWorker.RunWorkerAsync();
@@ -136,7 +138,8 @@ namespace Diplom.Forms.Tests
 
             }
             Thread.Sleep(2000);
-            SW.Stop(); 
+            SW.Stop();
+            testPack.EndTestDate = DateTime.Now;
             db.TestResult.Add(new TestResults
             {
                 TestPack = testPack,
@@ -170,6 +173,7 @@ namespace Diplom.Forms.Tests
             }
             Thread.Sleep(2000);
             SW.Stop(); //Останавливаемхз
+            testPack.EndTestDate = DateTime.Now;
             db.TestResult.Add(new TestResults {
                 TestPack = testPack,
                 ReactionTimes = reactionTimes,
@@ -177,6 +181,7 @@ namespace Diplom.Forms.Tests
                 EndTestDate = DateTime.Now,
                 BeginTestDate = testPack.BeginTestDate
             });
+            
             db.SaveChanges();
 
             label1.Invoke(new Action(() => label1.Visible = false ));
@@ -191,7 +196,7 @@ namespace Diplom.Forms.Tests
             BeginTestButton.Visible = false;
             TesteeComboBox.Visible = false;
             TesteeLabel.Visible = false;
-            settingsButton.Visible = false;
+          //  settingsButton.Visible = false;
             label1.Visible = true;
             label2.Visible = true;
             label2.Text = "Осталось попыток:" + counterMaxValue.ToString();
@@ -204,6 +209,7 @@ namespace Diplom.Forms.Tests
             if (this.backgroundWorker1.CancellationPending)
             {
                 e.Cancel = true;
+                isRunning = false;
                 return;
             }
             runFirtsTest();
@@ -256,9 +262,19 @@ namespace Diplom.Forms.Tests
             if (this.backgroundWorker2.CancellationPending)
             {
                 e.Cancel = true;
+                isRunning = false;
                 return;
             }
             runSecondTest();
+        }
+
+        private void ReactionTimeForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (isRunning && db.TestResult.Where(x => x.TestPack.id == testPack.id).Count() == 0)
+            {
+                db.TestPack.Remove(testPack);
+                db.SaveChanges();
+            }
         }
     }
 }

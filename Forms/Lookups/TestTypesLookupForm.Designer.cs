@@ -1,6 +1,6 @@
 ﻿namespace Diplom.Forms.Lookups
 {
-    partial class CognitiveLoadLookupForm
+    partial class TestTypesLookupForm
     {
         /// <summary>
         /// Required designer variable.
@@ -43,14 +43,14 @@
             // 
             this.RemoveButton.Click += new System.EventHandler(this.RemoveButton_Click);
             // 
-            // CognitiveLoadLookupForm
+            // TestTypesLookupForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(353, 414);
-            this.Name = "CognitiveLoadLookupForm";
-            this.Text = "Справочник когнитивной нагрузки";
-            this.Load += new System.EventHandler(this.CognitiveLoadLookupForm_Load);
+            this.ClientSize = new System.Drawing.Size(348, 412);
+            this.Name = "TestTypesLookupForm";
+            this.Text = "Справочник типов тестов";
+            this.Load += new System.EventHandler(this.TestTypesLookupForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.LookupBindingSource)).EndInit();
             this.ResumeLayout(false);
 

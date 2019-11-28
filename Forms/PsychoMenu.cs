@@ -30,7 +30,7 @@ namespace Diplom.Forms
                     item.id,
                     item.Profile.ToString(),
                     item.Profile.Group,
-                    "",
+                    item.TestType.Name,
                     item.BeginTestDate.ToString(),
                     item.EndTestDate.ToString());
             }
@@ -134,11 +134,7 @@ namespace Diplom.Forms
 
         private void dataGridView1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            var a = (Guid)dataGridView1.Rows[0].Cells[0].Value;
-            var selectedTestPack = db.TestPack.FirstOrDefault(x => x.id == a);
-            var testResults = db.TestResult.Where(x => x.TestPack.id == selectedTestPack.id).ToList();
-            ResultsChartForm resultsChartForm = new ResultsChartForm(testResults);
-            resultsChartForm.ShowDialog();
+            
 
         }
 
@@ -149,6 +145,24 @@ namespace Diplom.Forms
             var testResults = db.TestResult.Where(x => x.TestPack.id == selectedTestPack.id).ToList();
             ResultsChartForm resultsChartForm = new ResultsChartForm(testResults);
             resultsChartForm.ShowDialog();
+        }
+
+        private void времяРеакцииToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ReactionTimeForm reactionTimeForm = new ReactionTimeForm();
+            reactionTimeForm.ShowDialog();
+        }
+
+        private void DistributionOfAttentionMenuStrip_Click(object sender, EventArgs e)
+        {
+            DistributionOfAttention distributionOfAttention = new DistributionOfAttention();
+            distributionOfAttention.ShowDialog();
+        }
+
+        private void типыТестовToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TestTypesLookupForm testTypesLookupForm = new TestTypesLookupForm();
+            testTypesLookupForm.ShowDialog();
         }
     }
 }

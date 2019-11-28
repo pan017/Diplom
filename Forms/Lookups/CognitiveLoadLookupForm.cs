@@ -31,6 +31,7 @@ namespace Diplom.Forms.Lookups
             LookupBindingSource.ResetBindings(false);
             LookupBindingSource.DataSource = db.CognitiveLoad.Local.ToBindingList();
             LookupDataGridView.DataSource = LookupBindingSource;
+            LookupDataGridView.Columns[0].Visible = false;
         }
 
         private void AddButton_Click(object sender, EventArgs e)
@@ -49,6 +50,8 @@ namespace Diplom.Forms.Lookups
 
         private void EditButton_Click(object sender, EventArgs e)
         {
+            if (LookupBindingSource.Current == null)
+                return;
             CognitiveLoad edit = db.CognitiveLoad.First(x => x.id == ((CognitiveLoad)LookupBindingSource.Current).id);
 
             InputBox inputBox = new InputBox();
@@ -64,6 +67,8 @@ namespace Diplom.Forms.Lookups
 
         private void RemoveButton_Click(object sender, EventArgs e)
         {
+            if (db.CognitiveLoad.Count() == 0)
+                return;
             CognitiveLoad removed = db.CognitiveLoad.First(x => x.id == ((CognitiveLoad)LookupBindingSource.Current).id);
             try
             {

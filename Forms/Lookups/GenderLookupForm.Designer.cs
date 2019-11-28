@@ -49,7 +49,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(344, 412);
             this.Name = "GenderLookupForm";
-            this.Text = "GenderLookupForm";
+            this.Text = "Справочник гендеров";
             this.Load += new System.EventHandler(this.GenderLookupForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.LookupBindingSource)).EndInit();
             this.ResumeLayout(false);

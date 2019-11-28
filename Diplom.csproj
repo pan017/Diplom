@@ -181,6 +181,12 @@
     <Compile Include="Forms\Lookups\GroupsLookupForm.Designer.cs">
       <DependentUpon>GroupsLookupForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Lookups\TestTypesLookupForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Lookups\TestTypesLookupForm.Designer.cs">
+      <DependentUpon>TestTypesLookupForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\PsychoMenu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -226,7 +232,7 @@
     <Compile Include="Model\Base\BaseForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Model\CodeFile1.cs" />
+    <Compile Include="Model\ImagePropertys.cs" />
     <Compile Include="Model\Lookups\CognetiveLoadTypeLookup.cs" />
     <Compile Include="Model\Lookups\CognitiveLoadLookup.cs" />
     <Compile Include="Model\Lookups\DriversLicense.cs" />
@@ -249,7 +255,6 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\DBInit.cs" />
-    <Compile Include="Service\IniFile.cs" />
     <Compile Include="Settings.cs" />
     <EmbeddedResource Include="Forms\AuthForm.resx">
       <DependentUpon>AuthForm.cs</DependentUpon>
@@ -277,6 +282,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Lookups\GroupsLookupForm.resx">
       <DependentUpon>GroupsLookupForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Lookups\TestTypesLookupForm.resx">
+      <DependentUpon>TestTypesLookupForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\PsychoMenu.resx">
       <DependentUpon>PsychoMenu.cs</DependentUpon>

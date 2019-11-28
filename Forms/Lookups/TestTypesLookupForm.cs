@@ -13,33 +13,37 @@ using System.Windows.Forms;
 
 namespace Diplom.Forms.Lookups
 {
-    public partial class FamilyStateLookupForm : BaseLookupForm
+    public partial class TestTypesLookupForm : BaseLookupForm
     {
-        public FamilyStateLookupForm()
+        public TestTypesLookupForm()
         {
             InitializeComponent();
+        }
+        
+        private void TestTypesLookupForm_Load(object sender, EventArgs e)
+        {
+            reloadDataSource();
+            AddButton.Enabled = false;
+            RemoveButton.Enabled = false;
         }
         void reloadDataSource()
         {
             db = new ViewModel();
-            db.FamilyState.Load();
+            db.TestType.Load();
             LookupBindingSource.ResetBindings(false);
-            LookupBindingSource.DataSource = db.FamilyState.Local.ToBindingList();
+            LookupBindingSource.DataSource = db.TestType.Local.ToBindingList();
             LookupDataGridView.DataSource = LookupBindingSource;
-        }
-        private void FamilyStateLookupForm_Load(object sender, EventArgs e)
-        {
-            reloadDataSource();
+            LookupDataGridView.Columns[0].Visible = false;
         }
 
         private void AddButton_Click(object sender, EventArgs e)
         {
             InputBox inputBox = new InputBox();
-            FamilyState newFamilyState = new FamilyState();
-            newFamilyState.Name = inputBox.getString();
-            if (!String.IsNullOrEmpty(newFamilyState.Name))
+            TestType newTestType = new TestType();
+            newTestType.Name = inputBox.getString();
+            if (!String.IsNullOrEmpty(newTestType.Name))
             {
-                db.FamilyState.Add(newFamilyState);
+                db.TestType.Add(newTestType);
                 db.SaveChanges();
 
                 reloadDataSource();
@@ -50,7 +54,7 @@ namespace Diplom.Forms.Lookups
         {
             if (LookupBindingSource.Current == null)
                 return;
-            FamilyState edit = db.FamilyState.First(x => x.id == ((FamilyState)LookupBindingSource.Current).id);
+            TestType edit = db.TestType.First(x => x.id == ((TestType)LookupBindingSource.Current).id);
             InputBox inputBox = new InputBox();
             edit.Name = inputBox.getString(edit.Name);
             if (!String.IsNullOrEmpty(edit.Name))
@@ -63,12 +67,12 @@ namespace Diplom.Forms.Lookups
 
         private void RemoveButton_Click(object sender, EventArgs e)
         {
-            if (db.FamilyState.Count() == 0)
+            if (db.TestType.Count() == 0)
                 return;
-            FamilyState removed = db.FamilyState.First(x => x.id == ((FamilyState)LookupBindingSource.Current).id);
+            TestType removed = db.TestType.First(x => x.id == ((TestType)LookupBindingSource.Current).id);
             try
             {
-                db.FamilyState.Remove(removed);
+                db.TestType.Remove(removed);
                 db.SaveChanges();
             }
             catch (Exception ex)
