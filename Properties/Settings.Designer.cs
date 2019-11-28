@@ -25,7 +25,7 @@ namespace Diplom.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        [global::System.Configuration.DefaultSettingValueAttribute("7")]
         public int FirstTestTrys {
             get {
                 return ((int)(this["FirstTestTrys"]));

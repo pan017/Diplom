@@ -10,5 +10,6 @@ namespace Diplom.Model.Lookups
     {
         public decimal BeginReactionTime { get; set; }
         public decimal EndReactionTime { get; set; }
+        public bool isTrue { get; set; }
     }
 }

@@ -40,10 +40,9 @@ namespace Diplom.Forms.Tests
 
         bool cognitiveLoad = Properties.Settings.Default.FirtsTestCognitiveLoad;
         List<CognitiveLoad> cognitiveLoadLookup;
-        //   List<ReactionTimes> results;
+
         private void DistributionOfAttentionForm_Load(object sender, EventArgs e)
         {
-            //   results = new List<ReactionTimes>();
             cognitiveLoadLookup = db.CognitiveLoad.ToList();
             testPack = new TestPack();
         }
@@ -56,16 +55,19 @@ namespace Diplom.Forms.Tests
                 {
                     clickTimes.Add(SW.Elapsed.TotalMilliseconds);
                     TestResults testResults = new TestResults();
+
                     if (actionTimes.Count == 0)
                         reactionTimes.Add(new ReactionTime { BeginReactionTime = 0, EndReactionTime = (decimal)SW.Elapsed.TotalMilliseconds });
                     else
-                        reactionTimes.Add(new ReactionTime { BeginReactionTime = (decimal)actionTimes.Last(), EndReactionTime = (decimal)SW.Elapsed.TotalMilliseconds });
-
+                    {
+                        bool isTrue = reactionTimes.Count == 0 ? false : reactionTimes[reactionTimes.Count-1].BeginReactionTime == (decimal)actionTimes.Last();
+                        reactionTimes.Add(new ReactionTime { BeginReactionTime = (decimal)actionTimes.Last(), EndReactionTime = (decimal)SW.Elapsed.TotalMilliseconds, isTrue = !isTrue});
+                    }
                 }
             });
         }
 
-        private async void BeginTestButton_Click(object sender, EventArgs e)
+        private void BeginTestButton_Click(object sender, EventArgs e)
         {
             if (TesteeComboBox.SelectedItem == null)
             {
@@ -95,40 +97,35 @@ namespace Diplom.Forms.Tests
         void runTest(int index)
         {
             counter = 0;
+            reactionTimes = new List<ReactionTime>();
             endTestButton.Visible = false;
             this.Focus();
+            //backgroundWorker1.CancelAsync();
             switch (index)
             {
                 case 0:
                     showInstruction();
                     backgroundWorker1.DoWork += backgroundWorker1_DoWork;
+                    backgroundWorker1.WorkerSupportsCancellation = true;
                     backgroundWorker1.RunWorkerAsync(); break;
                 case 1:
                     label3.Visible = true;
                     showInstruction();
                     cognitiveLoadWorker.DoWork += cognitiveLoadWorker_DoWork;
+                    cognitiveLoadWorker.WorkerSupportsCancellation = true;
                     cognitiveLoadWorker.RunWorkerAsync();
                     backgroundWorker2.DoWork += backgroundWorker2_DoWork;
+                    backgroundWorker2.WorkerSupportsCancellation = true;
                     backgroundWorker2.RunWorkerAsync(); break;
                 default:
                     this.Dispose();
                     this.Close(); break;
-            }
-
-
-            //if (cognitiveLoad)
-            //{
-            //    cognitiveLoadWorker.DoWork += cognitiveLoadWorker_DoWork;
-            //    cognitiveLoadWorker.RunWorkerAsync();
-            //}
-            //backgroundWorker1.DoWork += backgroundWorker1_DoWork;
-            //backgroundWorker1.RunWorkerAsync();
-            
+            }         
         }
         void runSecondTest()
         {
             counter = 0;
-            for (; counter < counterMaxValue; counter++, oldCounterValue++)
+            for (counter = 0; counter < counterMaxValue; counter++, oldCounterValue++)
             {
                 label2.Invoke(new Action(() => label2.Text = "Осталось попыток:" + (counterMaxValue - counter).ToString()));
                 Thread.Sleep(random.Next(2000, 5000));
@@ -155,11 +152,13 @@ namespace Diplom.Forms.Tests
             label3.Invoke(new Action(() => label3.Visible = false));
             pictureBox1.Invoke(new Action(() => pictureBox1.Visible = false));
             endTestButton.Invoke(new Action(() => endTestButton.Visible = true));
+            backgroundWorker2.CancelAsync();
+            cognitiveLoadWorker.CancelAsync();
         }
          void runFirtsTest()
         {
             counter = 0;
-            for (; counter < counterMaxValue; counter++, oldCounterValue++)
+            for (counter = 0; counter < counterMaxValue; counter++, oldCounterValue++)
             {
                 label2.Invoke(new Action(() => label2.Text = "Осталось попыток:" + (counterMaxValue - counter).ToString()));
                 Thread.Sleep(random.Next(2000, 5000));
@@ -185,7 +184,7 @@ namespace Diplom.Forms.Tests
           //  label3.Invoke(new Action(() => label3.Visible = false));
             pictureBox1.Invoke(new Action(() => pictureBox1.Visible = false));
             endTestButton.Invoke(new Action(() => endTestButton.Visible = true));
-
+            backgroundWorker1.CancelAsync();
         }
         void showTestControls()
         {
@@ -195,12 +194,18 @@ namespace Diplom.Forms.Tests
             settingsButton.Visible = false;
             label1.Visible = true;
             label2.Visible = true;
+            label2.Text = "Осталось попыток:" + counterMaxValue.ToString();
             pictureBox1.Visible = true;
             this.Focus();
         }
 
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
+            if (this.backgroundWorker1.CancellationPending)
+            {
+                e.Cancel = true;
+                return;
+            }
             runFirtsTest();
         }
 
@@ -215,7 +220,11 @@ namespace Diplom.Forms.Tests
 
         private void cognitiveLoadWorker_DoWork(object sender, DoWorkEventArgs e)
         {
-            
+            if (this.cognitiveLoadWorker.CancellationPending)
+            {
+                e.Cancel = true;
+                return;
+            }
             showCognitiveLoad();
         }
 
@@ -244,6 +253,11 @@ namespace Diplom.Forms.Tests
 
         private void backgroundWorker2_DoWork(object sender, DoWorkEventArgs e)
         {
+            if (this.backgroundWorker2.CancellationPending)
+            {
+                e.Cancel = true;
+                return;
+            }
             runSecondTest();
         }
     }

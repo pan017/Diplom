@@ -27,6 +27,7 @@ namespace Diplom.Forms
             foreach (var item in list)
             {
                 dataGridView1.Rows.Add(
+                    item.id,
                     item.Profile.ToString(),
                     item.Profile.Group,
                     "",
@@ -129,6 +130,25 @@ namespace Diplom.Forms
         private void PsychoMenu_Activated(object sender, EventArgs e)
         {
             loadData();
+        }
+
+        private void dataGridView1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var a = (Guid)dataGridView1.Rows[0].Cells[0].Value;
+            var selectedTestPack = db.TestPack.FirstOrDefault(x => x.id == a);
+            var testResults = db.TestResult.Where(x => x.TestPack.id == selectedTestPack.id).ToList();
+            ResultsChartForm resultsChartForm = new ResultsChartForm(testResults);
+            resultsChartForm.ShowDialog();
+
+        }
+
+        private void ShowDiagramButton_Click(object sender, EventArgs e)
+        {
+            var a = (Guid)dataGridView1.Rows[dataGridView1.SelectedCells[0].RowIndex].Cells[0].Value;
+            var selectedTestPack = db.TestPack.FirstOrDefault(x => x.id == a);
+            var testResults = db.TestResult.Where(x => x.TestPack.id == selectedTestPack.id).ToList();
+            ResultsChartForm resultsChartForm = new ResultsChartForm(testResults);
+            resultsChartForm.ShowDialog();
         }
     }
 }

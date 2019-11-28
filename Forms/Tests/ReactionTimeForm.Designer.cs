@@ -97,7 +97,7 @@
             // 
             // BeginTestButton
             // 
-            this.BeginTestButton.Location = new System.Drawing.Point(313, 225);
+            this.BeginTestButton.Location = new System.Drawing.Point(174, 225);
             this.BeginTestButton.Name = "BeginTestButton";
             this.BeginTestButton.Size = new System.Drawing.Size(127, 23);
             this.BeginTestButton.TabIndex = 5;
@@ -124,7 +124,7 @@
             // 
             // endTestButton
             // 
-            this.endTestButton.Location = new System.Drawing.Point(315, 225);
+            this.endTestButton.Location = new System.Drawing.Point(398, 225);
             this.endTestButton.Name = "endTestButton";
             this.endTestButton.Size = new System.Drawing.Size(127, 23);
             this.endTestButton.TabIndex = 7;

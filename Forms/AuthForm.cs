@@ -1,6 +1,7 @@
 ﻿using Diplom.Forms;
 using Diplom.Forms.Tests;
 using Diplom.Model;
+using Diplom.Model.Views;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,7 +25,12 @@ namespace Diplom
 
         private void AuthForm_Load(object sender, EventArgs e)
         {
-        
+            List<string> files = System.IO.Directory.GetFiles(@"Resourses\1\").ToList();
+            List<ImagesForDOA> images = new List<ImagesForDOA>();
+          //  Dictionary<string, Image> images = new Dictionary<string, Image>();
+            files.ForEach(x => images.Add(new ImagesForDOA(x)));
+
+          
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -36,12 +42,11 @@ namespace Diplom
             inputBox.addComboBox(a);
             inputBox.addComboBox(a);
             inputBox.addComboBox(a);
-            if (inputBox.getString() == "12345")
-            {
+           //
                 this.Hide();
                 PsychoMenu distributionOfAttentionForm = new PsychoMenu();
                 distributionOfAttentionForm.ShowDialog();
-            }
+          //  }
         }
 
         private void button1_Click(object sender, EventArgs e)
