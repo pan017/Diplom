@@ -152,5 +152,23 @@ namespace Diplom.Forms
 
             return textBox.Text;
         }
+
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // InputBox
+            // 
+            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Name = "InputBox";
+            this.Load += new System.EventHandler(this.InputBox_Load);
+            this.ResumeLayout(false);
+
+        }
+
+        private void InputBox_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

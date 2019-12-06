@@ -25,12 +25,8 @@ namespace Diplom
 
         private void AuthForm_Load(object sender, EventArgs e)
         {
-            List<string> files = System.IO.Directory.GetFiles(@"Resourses\1\").ToList();
-            List<ImagesForDOA> images = new List<ImagesForDOA>();
-          //  Dictionary<string, Image> images = new Dictionary<string, Image>();
-            files.ForEach(x => images.Add(new ImagesForDOA(x)));
 
-          
+
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -65,6 +61,12 @@ namespace Diplom
         {
             SettingsForm settingsForm = new SettingsForm();
             settingsForm.ShowDialog();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            AlertnessTestForm alertnessTestForm = new AlertnessTestForm();
+            alertnessTestForm.ShowDialog();
         }
     }
 }

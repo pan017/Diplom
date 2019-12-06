@@ -26,12 +26,12 @@ namespace Diplom.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("7")]
-        public int FirstTestTrys {
+        public int TestTime {
             get {
-                return ((int)(this["FirstTestTrys"]));
+                return ((int)(this["TestTime"]));
             }
             set {
-                this["FirstTestTrys"] = value;
+                this["TestTime"] = value;
             }
         }
         

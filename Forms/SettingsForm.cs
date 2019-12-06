@@ -19,15 +19,16 @@ namespace Diplom.Forms
 
         private void SettingsForm_Load(object sender, EventArgs e)
         {
-            FirstTestTrys.Value = Properties.Settings.Default.FirstTestTrys;
+            FirstTestTrys.Value = Properties.Settings.Default.TestTime;
             CognitiveLoadComboBox.SelectedItem = Properties.Settings.Default.FirtsTestCognitiveLoad == true ? "Да" : "Нет"; 
         }
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            Properties.Settings.Default.FirstTestTrys = (int)FirstTestTrys.Value;
+            Properties.Settings.Default.TestTime = (int)FirstTestTrys.Value;
             Properties.Settings.Default.FirtsTestCognitiveLoad = CognitiveLoadComboBox.SelectedItem.ToString() == "Да" ? true : false;
             Properties.Settings.Default.Save();
+            MessageBox.Show("Настройки успешно сохранены", "Сохранено");
         }
     }
 }

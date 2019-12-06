@@ -99,6 +99,9 @@
     <Reference Include="DevExpress.XtraRichEdit.v17.2.Extensions, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraTreeList.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraTreeMap.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DocumentFormat.OpenXml, Version=2.9.1.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>packages\DocumentFormat.OpenXml.2.9.1\lib\net40\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>packages\EntityFramework.6.3.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -112,6 +115,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -122,6 +126,7 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Forms\AuthForm.cs">
@@ -217,6 +222,18 @@
     <Compile Include="Forms\TesteeForm.Designer.cs">
       <DependentUpon>TesteeForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Tests\AlertnessTestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Tests\AlertnessTestForm.Designer.cs">
+      <DependentUpon>AlertnessTestForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Tests\BaseTestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Tests\BaseTestForm.Designer.cs">
+      <DependentUpon>BaseTestForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Tests\DistributionOfAttention.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -262,6 +279,9 @@
     <EmbeddedResource Include="Forms\GroupsForm.resx">
       <DependentUpon>GroupsForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\InputBoxs\InputBox.resx">
+      <DependentUpon>InputBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Lookups\BaseLookupForm.resx">
       <DependentUpon>BaseLookupForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -300,6 +320,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\TesteeForm.resx">
       <DependentUpon>TesteeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Tests\AlertnessTestForm.resx">
+      <DependentUpon>AlertnessTestForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Tests\BaseTestForm.resx">
+      <DependentUpon>BaseTestForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Tests\DistributionOfAttention.resx">
       <DependentUpon>DistributionOfAttention.cs</DependentUpon>

@@ -31,6 +31,7 @@
             this.chartControl1 = new DevExpress.XtraCharts.ChartControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
+            this.ExcelImportButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.chartControl1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -67,11 +68,22 @@
             this.labelControl2.TabIndex = 2;
             this.labelControl2.Text = "Количество ошибок";
             // 
+            // ExcelImportButton
+            // 
+            this.ExcelImportButton.Location = new System.Drawing.Point(545, 583);
+            this.ExcelImportButton.Name = "ExcelImportButton";
+            this.ExcelImportButton.Size = new System.Drawing.Size(75, 23);
+            this.ExcelImportButton.TabIndex = 3;
+            this.ExcelImportButton.Text = "В excel";
+            this.ExcelImportButton.UseVisualStyleBackColor = true;
+            this.ExcelImportButton.Click += new System.EventHandler(this.ExcelImportButton_Click);
+            // 
             // ResultsChartForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1002, 613);
+            this.Controls.Add(this.ExcelImportButton);
             this.Controls.Add(this.labelControl2);
             this.Controls.Add(this.labelControl1);
             this.Controls.Add(this.chartControl1);
@@ -89,5 +101,6 @@
         private DevExpress.XtraCharts.ChartControl chartControl1;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.LabelControl labelControl2;
+        private System.Windows.Forms.Button ExcelImportButton;
     }
 }

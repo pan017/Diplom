@@ -21,7 +21,7 @@ namespace Diplom.Forms.Tests
         Random random;
         ViewModel db = new ViewModel();
         Stopwatch SW;
-        int counterMaxValue = Properties.Settings.Default.FirstTestTrys;
+        int counterMaxValue = Properties.Settings.Default.TestTime;
         int counter = 0;
         int oldCounterValue = 0;
         int currentTestIndex = 0;
@@ -288,5 +288,39 @@ namespace Diplom.Forms.Tests
             }
         }
 
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TesteeLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TesteeComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

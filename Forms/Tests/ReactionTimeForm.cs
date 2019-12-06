@@ -28,12 +28,12 @@ namespace Diplom.Forms.Tests
         Image redImage = Image.FromFile(@"Resourses\redPoint.png");
         List<ReactionTime> reactionTimes;
         TestPack testPack;
-        Profile currentTestee;
+
         ViewModel db = new ViewModel();
         Stopwatch SW;
-        int counterMaxValue = Properties.Settings.Default.FirstTestTrys;
+        int counterMaxValue = Properties.Settings.Default.TestTime;
         int counter = 0;
-        int oldCounterValue = 0;
+
         int currentTestIndex = 0;
         List<double> actionTimes = new List<double>();
         List<double> clickTimes = new List<double>();
@@ -127,16 +127,28 @@ namespace Diplom.Forms.Tests
         void runSecondTest()
         {
             counter = 0;
-            for (counter = 0; counter < counterMaxValue; counter++, oldCounterValue++)
+            while(SW.ElapsedMilliseconds < Properties.Settings.Default.TestTime * 1000)
             {
-                label2.Invoke(new Action(() => label2.Text = "Осталось попыток:" + (counterMaxValue - counter).ToString()));
+                // label2.Invoke(new Action(() => label2.Text = "Осталось попыток:" + (counterMaxValue - counter).ToString()));
+                
                 Thread.Sleep(random.Next(2000, 5000));
                 actionTimes.Add(SW.Elapsed.TotalMilliseconds);
                 pictureBox1.Invoke(new Action(() => pictureBox1.Image = blackImage));
                 Thread.Sleep(500);
                 pictureBox1.Invoke(new Action(() => pictureBox1.Image = redImage));
-
+                counter++;
             }
+
+            //for (counter = 0; counter < counterMaxValue; counter++, oldCounterValue++)
+            //{
+            //    label2.Invoke(new Action(() => label2.Text = "Осталось попыток:" + (counterMaxValue - counter).ToString()));
+            //    Thread.Sleep(random.Next(2000, 5000));
+            //    actionTimes.Add(SW.Elapsed.TotalMilliseconds);
+            //    pictureBox1.Invoke(new Action(() => pictureBox1.Image = blackImage));
+            //    Thread.Sleep(500);
+            //    pictureBox1.Invoke(new Action(() => pictureBox1.Image = redImage));
+
+            //}
             Thread.Sleep(2000);
             SW.Stop();
             testPack.EndTestDate = DateTime.Now;
@@ -161,15 +173,16 @@ namespace Diplom.Forms.Tests
          void runFirtsTest()
         {
             counter = 0;
-            for (counter = 0; counter < counterMaxValue; counter++, oldCounterValue++)
+            while (SW.ElapsedMilliseconds < Properties.Settings.Default.TestTime * 1000)
             {
-                label2.Invoke(new Action(() => label2.Text = "Осталось попыток:" + (counterMaxValue - counter).ToString()));
+                // label2.Invoke(new Action(() => label2.Text = "Осталось попыток:" + (counterMaxValue - counter).ToString()));
+
                 Thread.Sleep(random.Next(2000, 5000));
                 actionTimes.Add(SW.Elapsed.TotalMilliseconds);
                 pictureBox1.Invoke(new Action(() => pictureBox1.Image = blackImage));
                 Thread.Sleep(500);
                 pictureBox1.Invoke(new Action(() => pictureBox1.Image = redImage));
-                
+                counter++;
             }
             Thread.Sleep(2000);
             SW.Stop(); //Останавливаемхз
@@ -254,7 +267,7 @@ namespace Diplom.Forms.Tests
 
         private void DistributionOfAttentionForm_Activated(object sender, EventArgs e)
         {
-            counterMaxValue = Properties.Settings.Default.FirstTestTrys;
+            counterMaxValue = Properties.Settings.Default.TestTime;
         }
 
         private void backgroundWorker2_DoWork(object sender, DoWorkEventArgs e)
@@ -275,6 +288,11 @@ namespace Diplom.Forms.Tests
                 db.TestPack.Remove(testPack);
                 db.SaveChanges();
             }
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
