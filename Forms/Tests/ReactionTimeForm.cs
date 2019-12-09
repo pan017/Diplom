@@ -162,8 +162,8 @@ namespace Diplom.Forms.Tests
             });
             db.SaveChanges();
 
-            label1.Invoke(new Action(() => label1.Visible = false));
-            label2.Invoke(new Action(() => label2.Visible = false));
+            //label1.Invoke(new Action(() => label1.Visible = false));
+           // label2.Invoke(new Action(() => label2.Visible = false));
             label3.Invoke(new Action(() => label3.Visible = false));
             pictureBox1.Invoke(new Action(() => pictureBox1.Visible = false));
             endTestButton.Invoke(new Action(() => endTestButton.Visible = true));
@@ -198,7 +198,7 @@ namespace Diplom.Forms.Tests
             db.SaveChanges();
 
             label1.Invoke(new Action(() => label1.Visible = false ));
-            label2.Invoke(new Action(() => label2.Visible = false));
+           // label2.Invoke(new Action(() => label2.Visible = false));
           //  label3.Invoke(new Action(() => label3.Visible = false));
             pictureBox1.Invoke(new Action(() => pictureBox1.Visible = false));
             endTestButton.Invoke(new Action(() => endTestButton.Visible = true));
@@ -211,8 +211,8 @@ namespace Diplom.Forms.Tests
             TesteeLabel.Visible = false;
           //  settingsButton.Visible = false;
             label1.Visible = true;
-            label2.Visible = true;
-            label2.Text = "Осталось попыток:" + counterMaxValue.ToString();
+          //  label2.Visible = true;
+          //  label2.Text = "Осталось попыток:" + counterMaxValue.ToString();
             pictureBox1.Visible = true;
             this.Focus();
         }

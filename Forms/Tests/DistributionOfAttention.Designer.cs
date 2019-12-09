@@ -31,7 +31,6 @@
             this.BeginTestButton = new System.Windows.Forms.Button();
             this.TesteeLabel = new System.Windows.Forms.Label();
             this.TesteeComboBox = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
@@ -74,18 +73,6 @@
             this.TesteeComboBox.Size = new System.Drawing.Size(208, 21);
             this.TesteeComboBox.TabIndex = 12;
             this.TesteeComboBox.SelectedIndexChanged += new System.EventHandler(this.TesteeComboBox_SelectedIndexChanged);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(13, 8);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(159, 20);
-            this.label2.TabIndex = 11;
-            this.label2.Text = "Осталось попыток: ";
-            this.label2.Visible = false;
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label1
             // 
@@ -165,7 +152,6 @@
             this.Controls.Add(this.BeginTestButton);
             this.Controls.Add(this.TesteeLabel);
             this.Controls.Add(this.TesteeComboBox);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label3);
@@ -187,7 +173,6 @@
         private System.Windows.Forms.Button BeginTestButton;
         private System.Windows.Forms.Label TesteeLabel;
         private System.Windows.Forms.ComboBox TesteeComboBox;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;

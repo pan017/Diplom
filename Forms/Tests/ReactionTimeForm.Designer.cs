@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReactionTimeForm));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.TesteeComboBox = new System.Windows.Forms.ComboBox();
             this.TesteeLabel = new System.Windows.Forms.Label();
             this.BeginTestButton = new System.Windows.Forms.Button();
@@ -64,17 +63,6 @@
             this.label1.Size = new System.Drawing.Size(617, 24);
             this.label1.TabIndex = 1;
             this.label1.Text = "Нажимайте \"Пробел\" каждый раз, когда круг станет черного цвета";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(12, 9);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(159, 20);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Осталось попыток: ";
-            this.label2.Visible = false;
             // 
             // TesteeComboBox
             // 
@@ -147,7 +135,6 @@
             this.Controls.Add(this.BeginTestButton);
             this.Controls.Add(this.TesteeLabel);
             this.Controls.Add(this.TesteeComboBox);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
             this.Name = "ReactionTimeForm";
@@ -166,7 +153,6 @@
 
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox TesteeComboBox;
         private System.Windows.Forms.Label TesteeLabel;
         private System.Windows.Forms.Button BeginTestButton;

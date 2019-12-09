@@ -2,11 +2,15 @@
 using Diplom.Forms.Tests;
 using Diplom.Model;
 using Diplom.Service;
+using DocumentFormat.OpenXml;
+using DocumentFormat.OpenXml.Packaging;
+using DocumentFormat.OpenXml.Spreadsheet;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -163,6 +167,142 @@ namespace Diplom.Forms
         {
             TestTypesLookupForm testTypesLookupForm = new TestTypesLookupForm();
             testTypesLookupForm.ShowDialog();
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            var a = GenetrateExcelReport();
+            using (var fs = new FileStream(@"D:\Projects\Diplom\bin\Debug\Resourses\asdasdcxzczc.xlsx", FileMode.Create, FileAccess.Write))
+            {
+                fs.Write(a, 0, a.Length);         
+            }
+        }
+
+        byte[] GenetrateExcelReport()
+        {
+
+
+            using (MemoryStream mem = new MemoryStream())
+            {
+                using (SpreadsheetDocument document = SpreadsheetDocument.Create(mem, SpreadsheetDocumentType.Workbook))
+                {
+
+                    WorkbookPart workbookPart = document.AddWorkbookPart();
+                    workbookPart.Workbook = new Workbook();
+                    WorksheetPart worksheetPart = workbookPart.AddNewPart<WorksheetPart>();
+
+                    FileVersion fv = new FileVersion();
+                    fv.ApplicationName = "Microsoft Office Excel";
+                    worksheetPart.Worksheet = new Worksheet(new SheetData());
+                    WorkbookStylesPart wbsp = workbookPart.AddNewPart<WorkbookStylesPart>();
+
+                    // Добавляем в документ набор стилей
+                    wbsp.Stylesheet = ExcelHelper.GenerateStyleSheet();
+                    wbsp.Stylesheet.Save();
+
+
+
+                    // Задаем колонки и их ширину
+                    Columns lstColumns = worksheetPart.Worksheet.GetFirstChild<Columns>();
+                    Boolean needToInsertColumns = false;
+                    if (lstColumns == null)
+                    {
+                        lstColumns = new Columns();
+                        needToInsertColumns = true;
+                    }
+                    lstColumns.Append(new Column() { Min = 1, Max = 1, Width = 25, CustomWidth = true });
+                    for (int i = 0; i < 50; i++)
+                    {
+                        lstColumns.Append(new Column() { Min = 2, Max = 53, Width = 14, CustomWidth = true });
+                    }
+
+
+                    if (needToInsertColumns)
+                        worksheetPart.Worksheet.InsertAt(lstColumns, 0);
+
+
+                    //Создаем лист в книге
+                    Sheets sheets = workbookPart.Workbook.AppendChild(new Sheets());
+                    Sheet sheet = new Sheet() { Id = workbookPart.GetIdOfPart(worksheetPart), SheetId = 1, Name = "asdasd" };
+                    sheets.Append(sheet);
+
+                    SheetData sheetData = worksheetPart.Worksheet.GetFirstChild<SheetData>();
+
+                    //Добавим заголовки в первую строку
+                    Row row = new Row() { RowIndex = 1 };
+                    sheetData.Append(row);
+
+                    InsertCell(row, 1, "ФИО респондентов", CellValues.String, 5);
+                    InsertCell(row, 2, "Группа", CellValues.String, 5);
+                    InsertCell(row, 3, "Стаж вождения", CellValues.String, 5);
+                    InsertCell(row, 4, "Распределение внимания (РВ)", CellValues.String, 5);
+                    // ExcelHelper.InsertEmptyCell(row, 5, 9, CellValues.String, 5);
+
+
+                    row = new Row() { RowIndex = 2 };
+                    sheetData.Append(row);
+
+                    InsertCell(row, 1, "", CellValues.String, 5);
+                    InsertCell(row, 2, "", CellValues.String, 5);
+                    InsertCell(row, 3, "", CellValues.String, 5);
+                    InsertCell(row, 4, "Среднее время реагирования в задании №1 (с)", CellValues.String, 5);
+                    InsertCell(row, 5, "Количество правильных ответов на зрительные стимулы в задании №1", CellValues.String, 5);
+                    InsertCell(row, 6, "Разница средних времен реагирования между заданием №2 и заданием №1 (с)", CellValues.String, 5);
+                    InsertCell(row, 7, "Среднее время реагирования в задании №2 на зрительные стимулы (с)", CellValues.String, 5);
+                    InsertCell(row, 8, "Количество правильных реагирований на зрительные стимулы в задании № 2", CellValues.String, 5);
+                    InsertCell(row, 9, "5 Разница количества правильных ответов  на зрительные стимулы между заданием № 1 и заданием №2:", CellValues.String, 5);
+
+
+
+                    UInt32Value rowIndex = 3;
+                    foreach (var item in db.TestPack.ToList())
+                    {
+                        row = new Row() { RowIndex = rowIndex };
+                        sheetData.Append(row);
+
+                        InsertCell(row, 1, item.Profile.ToString(), CellValues.String, 5);
+                        InsertCell(row, 2, item.Profile.Group.Name, CellValues.String, 5);
+                        InsertCell(row, 3, item.Profile.DriversLicense == null ? "0" : (DateTime.Now - item.Profile.DriversLicense.GettingDate).TotalDays.ToString(), CellValues.String, 5);
+
+                        if (db.TestResult.Where(x => x.TestPack.id == item.id).Count() != 0)
+                        {
+                            if (db.TestResult.Where(x => x.TestPack.id == item.id).OrderBy(x => x.CreatonDate).First().ReactionTimes.Count != 0)
+                            {
+                                var reactions = db.TestResult.Where(x => x.TestPack.id == item.id)
+                                  .OrderBy(x => x.CreatonDate)
+                                  .First()
+                                  .ReactionTimes;
+                                InsertCell(row, 4, reactions.Average(x => x.EndReactionTime - x.EndReactionTime).ToString(), CellValues.String, 5);
+                                InsertCell(row, 5, reactions.Count(x => x.isTrue == true).ToString(), CellValues.String, 5);
+                            }
+                           
+                        }
+                           
+                        else
+                            InsertCell(row, 2, "", CellValues.String, 5);
+
+
+                        rowIndex++;
+                    }
+                    //  row = new Row() { RowIndex = rowIndex + 1 };
+                    // sheetData.Append(row);
+                    workbookPart.Workbook.Save();
+                    document.Close();
+                }
+                return mem.ToArray();
+            }
+
+        }
+        void InsertCell(Row row, int cell_num, string val, CellValues type, uint styleIndex)
+        {
+            Cell refCell = null;
+            Cell newCell = new Cell() { CellReference = cell_num.ToString() + ":" + row.RowIndex.ToString(), StyleIndex = styleIndex };
+            row.InsertBefore(newCell, refCell);
+
+            // Устанавливает тип значения.
+            newCell.CellValue = new CellValue(val);
+            newCell.DataType = new EnumValue<CellValues>(type);
+
         }
     }
 }

@@ -59,18 +59,28 @@ namespace Diplom.Forms.Tests
         void runFirtsTest()
         {
             counter = 0;
-            for (; counter < counterMaxValue; counter++, oldCounterValue++)
+            while (SW.ElapsedMilliseconds < Properties.Settings.Default.TestTime * 1000)
             {
-                label2.Invoke(new Action(() => label2.Text = "Осталось попыток:" + (counterMaxValue - counter).ToString()));
                 Thread.Sleep(random.Next(2000, 5000));
                 actionTimes.Add(SW.Elapsed.TotalMilliseconds);
                 leftImage = images[random.Next(0, images.Count)];
                 rightImage = images[random.Next(0, images.Count)];
                 pictureBox1.Invoke(new Action(() => pictureBox1.Image = leftImage.Image));
                 pictureBox2.Invoke(new Action(() => pictureBox2.Image = rightImage.Image));
-
+                counter++;
             }
-            label2.Invoke(new Action(() => label2.Text = "Осталось попыток:0"));
+            //for (; counter < counterMaxValue; counter++, oldCounterValue++)
+            //{
+            //    label2.Invoke(new Action(() => label2.Text = "Осталось попыток:" + (counterMaxValue - counter).ToString()));
+            //    Thread.Sleep(random.Next(2000, 5000));
+            //    actionTimes.Add(SW.Elapsed.TotalMilliseconds);
+            //    leftImage = images[random.Next(0, images.Count)];
+            //    rightImage = images[random.Next(0, images.Count)];
+            //    pictureBox1.Invoke(new Action(() => pictureBox1.Image = leftImage.Image));
+            //    pictureBox2.Invoke(new Action(() => pictureBox2.Image = rightImage.Image));
+
+            //}
+          //  label2.Invoke(new Action(() => label2.Text = "Осталось попыток:0"));
             Thread.Sleep(2000);
             SW.Stop(); //Останавливаемхз
             testPack.EndTestDate = DateTime.Now;
@@ -84,8 +94,8 @@ namespace Diplom.Forms.Tests
             });
             db.SaveChanges();
 
-            label1.Invoke(new Action(() => label1.Visible = false));
-            label2.Invoke(new Action(() => label2.Visible = false));
+           // label1.Invoke(new Action(() => label1.Visible = false));
+            //label2.Invoke(new Action(() => label2.Visible = false));
             //  label3.Invoke(new Action(() => label3.Visible = false));
             pictureBox1.Invoke(new Action(() => pictureBox1.Image = null));
             pictureBox2.Invoke(new Action(() => pictureBox2.Image = null));
@@ -139,7 +149,7 @@ namespace Diplom.Forms.Tests
             TesteeLabel.Visible = false;
             //settingsButton.Visible = false;
             label1.Visible = true;
-            label2.Visible = true;
+            //label2.Visible = true;
             pictureBox1.Visible = true;
             pictureBox2.Visible = true;
             this.Focus();
@@ -185,18 +195,18 @@ namespace Diplom.Forms.Tests
         void runSecondTest()
         {
             counter = 0;
-            for (counter = 0; counter < counterMaxValue; counter++, oldCounterValue++)
+            while (SW.ElapsedMilliseconds < Properties.Settings.Default.TestTime * 1000)
             {
-                label2.Invoke(new Action(() => label2.Text = "Осталось попыток:" + (counterMaxValue - counter).ToString()));
+              //  label2.Invoke(new Action(() => label2.Text = "Осталось попыток:" + (counterMaxValue - counter).ToString()));
                 Thread.Sleep(random.Next(2000, 5000));
                 actionTimes.Add(SW.Elapsed.TotalMilliseconds);
                 leftImage = images[random.Next(0, images.Count)];
                 rightImage = images[random.Next(0, images.Count)];
                 pictureBox1.Invoke(new Action(() => pictureBox1.Image = leftImage.Image));
                 pictureBox2.Invoke(new Action(() => pictureBox2.Image = rightImage.Image));
-
+                counter++;
             }
-            label2.Invoke(new Action(() => label2.Text = "Осталось попыток:0"));
+           // label2.Invoke(new Action(() => label2.Text = "Осталось попыток:0"));
             Thread.Sleep(2000);
             SW.Stop();
             testPack.EndTestDate = DateTime.Now;
@@ -211,7 +221,7 @@ namespace Diplom.Forms.Tests
             db.SaveChanges();
 
             label1.Invoke(new Action(() => label1.Visible = false));
-            label2.Invoke(new Action(() => label2.Visible = false));
+      //      label2.Invoke(new Action(() => label2.Visible = false));
             label3.Invoke(new Action(() => label3.Visible = false));
             pictureBox1.Invoke(new Action(() => pictureBox1.Visible = false));
             pictureBox2.Invoke(new Action(() => pictureBox2.Visible = false));

@@ -32,6 +32,7 @@
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.ExcelImportButton = new System.Windows.Forms.Button();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.chartControl1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -70,13 +71,19 @@
             // 
             // ExcelImportButton
             // 
-            this.ExcelImportButton.Location = new System.Drawing.Point(545, 583);
+            this.ExcelImportButton.Location = new System.Drawing.Point(508, 12);
             this.ExcelImportButton.Name = "ExcelImportButton";
             this.ExcelImportButton.Size = new System.Drawing.Size(75, 23);
             this.ExcelImportButton.TabIndex = 3;
             this.ExcelImportButton.Text = "В excel";
             this.ExcelImportButton.UseVisualStyleBackColor = true;
             this.ExcelImportButton.Click += new System.EventHandler(this.ExcelImportButton_Click);
+            // 
+            // saveFileDialog1
+            // 
+            this.saveFileDialog1.DefaultExt = "xlsx";
+            this.saveFileDialog1.Filter = "Excel files(*.xlsx)|*.xlsx|All files(*.*)|*.*";
+            this.saveFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialog1_FileOk);
             // 
             // ResultsChartForm
             // 
@@ -102,5 +109,6 @@
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private System.Windows.Forms.Button ExcelImportButton;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }
