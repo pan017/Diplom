@@ -236,7 +236,9 @@ namespace Diplom.Forms
                     InsertCell(row, 2, "Группа", CellValues.String, 5);
                     InsertCell(row, 3, "Стаж вождения", CellValues.String, 5);
                     InsertCell(row, 4, "Распределение внимания (РВ)", CellValues.String, 5);
-                    // ExcelHelper.InsertEmptyCell(row, 5, 9, CellValues.String, 5);
+                    ExcelHelper.InsertEmptyCell(row, 5, 9, CellValues.String, 5);
+                    InsertCell(row, 10, "Время реакции", CellValues.String, 5);
+                    
 
 
                     row = new Row() { RowIndex = 2 };
@@ -250,9 +252,18 @@ namespace Diplom.Forms
                     InsertCell(row, 6, "Разница средних времен реагирования между заданием №2 и заданием №1 (с)", CellValues.String, 5);
                     InsertCell(row, 7, "Среднее время реагирования в задании №2 на зрительные стимулы (с)", CellValues.String, 5);
                     InsertCell(row, 8, "Количество правильных реагирований на зрительные стимулы в задании № 2", CellValues.String, 5);
-                    InsertCell(row, 9, "5 Разница количества правильных ответов  на зрительные стимулы между заданием № 1 и заданием №2:", CellValues.String, 5);
+                    InsertCell(row, 9, "Разница количества правильных ответов  на зрительные стимулы между заданием № 1 и заданием №2:", CellValues.String, 5);
+                    InsertCell(row, 10, "Среднее время реагирования в задании №1 (с)", CellValues.String, 5);
+                    InsertCell(row, 11, "Количество правильных ответов на зрительные стимулы в задании №1", CellValues.String, 5);
+                    InsertCell(row, 12, "Разница средних времен реагирования между заданием №2 и заданием №1 (с)", CellValues.String, 5);
+                    InsertCell(row, 13, "Среднее время реагирования в задании №2 на зрительные стимулы (с)", CellValues.String, 5);
+                    InsertCell(row, 14, "Количество правильных реагирований на зрительные стимулы в задании № 2", CellValues.String, 5);
+                    InsertCell(row, 15, "Разница количества правильных ответов  на зрительные стимулы между заданием № 1 и заданием №2:", CellValues.String, 5);
 
 
+                    row.CustomHeight = true;
+                    row.Height = new DoubleValue(){ Value = 240 };
+                    
 
                     UInt32Value rowIndex = 3;
                     foreach (var item in db.TestPack.ToList())
@@ -262,26 +273,142 @@ namespace Diplom.Forms
 
                         InsertCell(row, 1, item.Profile.ToString(), CellValues.String, 5);
                         InsertCell(row, 2, item.Profile.Group.Name, CellValues.String, 5);
-                        InsertCell(row, 3, item.Profile.DriversLicense == null ? "0" : (DateTime.Now - item.Profile.DriversLicense.GettingDate).TotalDays.ToString(), CellValues.String, 5);
+                        InsertCell(row, 3, item.Profile.DriversLicense == null ? "0" : ((DateTime.Now - item.Profile.DriversLicense.GettingDate).TotalDays /365).ToString("N2"), CellValues.String, 5);
 
-                        if (db.TestResult.Where(x => x.TestPack.id == item.id).Count() != 0)
+                        var currentTestResultsList = db.TestResult.Where(x => x.TestPack.id == item.id && x.TestPack.TestType.TestTypeIndex == 0).OrderBy(x => x.CreatonDate).ToList();
+                        if (currentTestResultsList.Count() != 0)
                         {
-                            if (db.TestResult.Where(x => x.TestPack.id == item.id).OrderBy(x => x.CreatonDate).First().ReactionTimes.Count != 0)
+                            if (currentTestResultsList.First(x => x.TestStage.TestStageIndex == 0).ReactionTimes.Count != 0)
                             {
-                                var reactions = db.TestResult.Where(x => x.TestPack.id == item.id)
-                                  .OrderBy(x => x.CreatonDate)
-                                  .First()
+                                var reactions = currentTestResultsList
+                                  .First(x => x.TestStage.TestStageIndex == 0)
                                   .ReactionTimes;
-                                InsertCell(row, 4, reactions.Average(x => x.EndReactionTime - x.EndReactionTime).ToString(), CellValues.String, 5);
+                                List<decimal> reactionList = new List<decimal>();
+                                reactions.ForEach(x => reactionList.Add(x.EndReactionTime - x.BeginReactionTime));
+                                InsertCell(row, 4, (reactionList.Average() / 1000).ToString("N3"), CellValues.String, 5);
                                 InsertCell(row, 5, reactions.Count(x => x.isTrue == true).ToString(), CellValues.String, 5);
+
+                                if (currentTestResultsList.FirstOrDefault(x => x.TestStage.TestStageIndex == 1) != null && currentTestResultsList.First(x => x.TestStage.TestStageIndex == 1).ReactionTimes.Count != 0)
+
+                                   
+                                {
+                                  var reactions2 = currentTestResultsList.First(x => x.TestStage.TestStageIndex == 1).ReactionTimes;
+                                    List<decimal> reactionList2 = new List<decimal>();
+                                    reactions.ForEach(x => reactionList2.Add(x.EndReactionTime - x.BeginReactionTime));
+                                    if (reactionList2.Count() != 0)
+                                    {
+                                        InsertCell(row, 6, ((reactionList.Average() / 1000) - (reactionList2.Average() / 1000)).ToString("N3"), CellValues.String, 5);
+                                        InsertCell(row, 7, (reactionList2.Average() / 1000).ToString("N3"), CellValues.String, 5);
+                                        InsertCell(row, 8, reactions2.Count(x => x.isTrue == true).ToString(), CellValues.String, 5);
+                                        InsertCell(row, 9, (reactions.Count(x => x.isTrue == true) - reactions2.Count(x => x.isTrue == true)).ToString(), CellValues.String, 5);
+                                    }
+                                    else
+                                    {
+                                        InsertCell(row, 6, "", CellValues.String, 5);
+                                        InsertCell(row, 7, "", CellValues.String, 5);
+                                        InsertCell(row, 8, "", CellValues.String, 5);
+                                        InsertCell(row, 9, "", CellValues.String, 5);
+                                    }
+                                }
+                                else
+                                {
+                                    InsertCell(row, 6, "", CellValues.String, 5);
+                                    InsertCell(row, 7, "", CellValues.String, 5);
+                                    InsertCell(row, 8, "", CellValues.String, 5);
+                                    InsertCell(row, 9, "", CellValues.String, 5);
+                                }
+
                             }
-                           
+                            else
+                            {
+                                InsertCell(row, 4, "", CellValues.String, 5);
+                                InsertCell(row, 5, "", CellValues.String, 5);
+                                InsertCell(row, 6, "", CellValues.String, 5);
+                                InsertCell(row, 7, "", CellValues.String, 5);
+                                InsertCell(row, 8, "", CellValues.String, 5);
+                                InsertCell(row, 9, "", CellValues.String, 5);
+                            }
+
+
                         }
-                           
                         else
-                            InsertCell(row, 2, "", CellValues.String, 5);
+                        {
+                          //  InsertCell(row, 2, "", CellValues.String, 5);
+                          //  InsertCell(row, 3, "", CellValues.String, 5);
+                            InsertCell(row, 4, "", CellValues.String, 5);
+                            InsertCell(row, 5, "", CellValues.String, 5);
+                            InsertCell(row, 6, "", CellValues.String, 5);
+                            InsertCell(row, 7, "", CellValues.String, 5);
+                            InsertCell(row, 8, "", CellValues.String, 5);
+                            InsertCell(row, 9, "", CellValues.String, 5);
+                        }
+                        currentTestResultsList = db.TestResult.Where(x => x.TestPack.id == item.id && x.TestPack.TestType.TestTypeIndex == 1).OrderBy(x => x.CreatonDate).ToList();
+                        if (currentTestResultsList.Count() != 0)
+                        {
+                            if (currentTestResultsList.First(x => x.TestStage.TestStageIndex == 0).ReactionTimes.Count != 0)
+                            {
+                                var reactions = currentTestResultsList
+                                  .First(x => x.TestStage.TestStageIndex == 0)
+                                  .ReactionTimes;
+                                List<decimal> reactionList = new List<decimal>();
+                                reactions.ForEach(x => reactionList.Add(x.EndReactionTime - x.BeginReactionTime));
+                                InsertCell(row, 10, (reactionList.Average() / 1000).ToString("N3"), CellValues.String, 5);
+                                InsertCell(row, 11, reactions.Count(x => x.isTrue == true).ToString(), CellValues.String, 5);
+
+                                if (currentTestResultsList.FirstOrDefault(x => x.TestStage.TestStageIndex == 1) != null && currentTestResultsList.First(x => x.TestStage.TestStageIndex == 1).ReactionTimes.Count != 0)
 
 
+                                {
+                                    var reactions2 = currentTestResultsList.First(x => x.TestStage.TestStageIndex == 1).ReactionTimes;
+                                    List<decimal> reactionList2 = new List<decimal>();
+                                    reactions.ForEach(x => reactionList2.Add(x.EndReactionTime - x.BeginReactionTime));
+                                    if (reactionList2.Count() != 0)
+                                    {
+                                        InsertCell(row, 12, ((reactionList.Average() / 1000) - (reactionList2.Average() / 1000)).ToString("N3"), CellValues.String, 5);
+                                        InsertCell(row, 13, (reactionList2.Average() / 1000).ToString("N3"), CellValues.String, 5);
+                                        InsertCell(row, 14, reactions2.Count(x => x.isTrue == true).ToString(), CellValues.String, 5);
+                                        InsertCell(row, 15, (reactions.Count(x => x.isTrue == true) - reactions2.Count(x => x.isTrue == true)).ToString(), CellValues.String, 5);
+                                    }
+                                    else
+                                    {
+                                        InsertCell(row, 12, "", CellValues.String, 5);
+                                        InsertCell(row, 13, "", CellValues.String, 5);
+                                        InsertCell(row, 14, "", CellValues.String, 5);
+                                        InsertCell(row, 15, "", CellValues.String, 5);
+                                    }
+                                }
+                                else
+                                {
+                                    InsertCell(row, 12, "", CellValues.String, 5);
+                                    InsertCell(row, 13, "", CellValues.String, 5);
+                                    InsertCell(row, 14, "", CellValues.String, 5);
+                                    InsertCell(row, 15, "", CellValues.String, 5);
+                                }
+
+                            }
+                            else
+                            {
+                                InsertCell(row, 10, "", CellValues.String, 5);
+                                InsertCell(row, 11, "", CellValues.String, 5);
+                                InsertCell(row, 12, "", CellValues.String, 5);
+                                InsertCell(row, 13, "", CellValues.String, 5);
+                                InsertCell(row, 14, "", CellValues.String, 5);
+                                InsertCell(row, 15, "", CellValues.String, 5);
+                            }
+
+
+                        }
+                        else
+                        {
+                            //  InsertCell(row, 2, "", CellValues.String, 5);
+                            //InsertCell(row, 3, "", CellValues.String, 5);
+                            InsertCell(row, 10, "", CellValues.String, 5);
+                            InsertCell(row, 11, "", CellValues.String, 5);
+                            InsertCell(row, 12, "", CellValues.String, 5);
+                            InsertCell(row, 13, "", CellValues.String, 5);
+                            InsertCell(row, 14, "", CellValues.String, 5);
+                            InsertCell(row, 15, "", CellValues.String, 5);
+                        }
                         rowIndex++;
                     }
                     //  row = new Row() { RowIndex = rowIndex + 1 };

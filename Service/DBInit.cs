@@ -48,6 +48,7 @@ namespace Diplom.Service
             {
                 db.TestType.Add(new TestType() { Name = "Распределение внимания", TestTypeIndex = 0 });
                 db.TestType.Add(new TestType() { Name = "Время реакции", TestTypeIndex = 1 });
+                db.TestType.Add(new TestType() { Name = "Бдительность", TestTypeIndex = 2 });
             }
             if(!db.TestStage.Any())
             {
