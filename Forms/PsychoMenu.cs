@@ -147,6 +147,20 @@ namespace Diplom.Forms
             var a = (Guid)dataGridView1.Rows[dataGridView1.SelectedCells[0].RowIndex].Cells[0].Value;
             var selectedTestPack = db.TestPack.FirstOrDefault(x => x.id == a);
             var testResults = db.TestResult.Where(x => x.TestPack.id == selectedTestPack.id).ToList();
+            if(testResults.Count == 0)
+            {
+                db.TestPack.Remove(selectedTestPack);
+                db.SaveChanges();
+                MessageBox.Show("Данный тест не был пройден до конца. Просмотр результатов не возможен. Он будет удален.", "Ошибка");
+                return;
+            }
+            if (testResults[0].ReactionTimes == null || testResults[0].ReactionTimes.Count == 0)
+            {               
+                db.TestResult.Remove(testResults[0]);
+                db.SaveChanges();
+                MessageBox.Show("Данный тест не был пройден до конца. Просмотр результатов не возможен. Он будет удален.", "Ошибка");
+                return;
+            }
             ResultsChartForm resultsChartForm = new ResultsChartForm(testResults);
             resultsChartForm.ShowDialog();
         }

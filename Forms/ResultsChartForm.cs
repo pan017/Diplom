@@ -17,6 +17,7 @@ using DocumentFormat.OpenXml.Packaging;
 using Alignment = DocumentFormat.OpenXml.Spreadsheet.Alignment;
 using Color = DocumentFormat.OpenXml.Spreadsheet.Color;
 using Font = DocumentFormat.OpenXml.Spreadsheet.Font;
+using Diplom.Service;
 
 namespace Diplom.Forms
 {
@@ -38,6 +39,8 @@ namespace Diplom.Forms
 
         private void ResultsChartForm_Load(object sender, EventArgs e)
         {
+            if (testResults.Count == 0)
+                return;
             labelControl1.Text = String.Format("Ипытуемый: {0}", testResults[0].TestPack.Profile.ToString());
             this.Text = String.Format("Ипытуемый: {0}", testResults[0].TestPack.Profile.ToString());
             int errorsCount = 0;
@@ -98,7 +101,7 @@ namespace Diplom.Forms
 
         private void ExcelImportButton_Click(object sender, EventArgs e)
         {
-           
+            saveFileDialog1.FileName = testResults[0].TestPack.Profile.ToString();
             saveFileDialog1.ShowDialog();
         }
         static Stylesheet GenerateStyleSheet()
@@ -197,8 +200,7 @@ namespace Diplom.Forms
                 )
             ); // Выход
         }
-
-        private void saveFileDialog1_FileOk(object sender, CancelEventArgs e)
+        byte[] GenetrateExcelReport()
         {
             using (MemoryStream mem = new MemoryStream())
             {
@@ -215,7 +217,7 @@ namespace Diplom.Forms
                     WorkbookStylesPart wbsp = workbookPart.AddNewPart<WorkbookStylesPart>();
 
                     // Добавляем в документ набор стилей
-                    wbsp.Stylesheet = GenerateStyleSheet();
+                    wbsp.Stylesheet = ExcelHelper.GenerateStyleSheet();
                     wbsp.Stylesheet.Save();
 
 
@@ -241,7 +243,7 @@ namespace Diplom.Forms
 
                     //Создаем лист в книге
                     Sheets sheets = workbookPart.Workbook.AppendChild(new Sheets());
-                    Sheet sheet = new Sheet() { Id = workbookPart.GetIdOfPart(worksheetPart), SheetId = 1, Name = "" };
+                    Sheet sheet = new Sheet() { Id = workbookPart.GetIdOfPart(worksheetPart), SheetId = 1, Name = testResults[0].TestPack.Profile.ToString() };
                     sheets.Append(sheet);
 
                     SheetData sheetData = worksheetPart.Worksheet.GetFirstChild<SheetData>();
@@ -249,13 +251,122 @@ namespace Diplom.Forms
                     //Добавим заголовки в первую строку
                     Row row = new Row() { RowIndex = 1 };
                     sheetData.Append(row);
+                    InsertCell(row, 1, "Тест", CellValues.String, 5);
+                    InsertCell(row, 2, testResults[0].TestPack.TestType.Name, CellValues.String, 5);
+
+                    row = new Row() { RowIndex = 2 };
+                    sheetData.Append(row);
+                    InsertCell(row, 1, "Студент", CellValues.String, 5);
+                    InsertCell(row, 2, testResults[0].TestPack.Profile.ToString(), CellValues.String, 5);
+
+                    row = new Row() { RowIndex = 3 };
+                    sheetData.Append(row);
+                    InsertCell(row, 1, "Группа", CellValues.String, 5);
+                    InsertCell(row, 2, testResults[0].TestPack.Profile.Group.Name, CellValues.String, 5);
+
+                    row = new Row() { RowIndex = 4 };
+                    sheetData.Append(row);
+                    InsertCell(row, 1, "", CellValues.String, 5);
+
+                    row = new Row() { RowIndex = 5 };
+                    sheetData.Append(row);
+                    InsertCell(row, 1, "Без нагрузки", CellValues.String, 5);
+
+                    row = new Row() { RowIndex = 6 };
+                    sheetData.Append(row);
+                    InsertCell(row, 1, "№", CellValues.String, 6);
+                    List<decimal> firtsTestResults = new List<decimal>();
+                    testResults[0].ReactionTimes.Where(x => x.isTrue == true).ToList().ForEach(x => firtsTestResults.Add(x.EndReactionTime - x.BeginReactionTime));
+                    for (int i = 0; i < firtsTestResults.Count; i++)
+                    {
+                        InsertCell(row, i+2, (i+1).ToString("N0"), CellValues.Number, 6);
+                    }
+                    row = new Row() { RowIndex = 7 };
+                    sheetData.Append(row);
+                    InsertCell(row, 1, "Результат, сек", CellValues.String, 6);
+                    int firstStageresultsCount = 0;
+                    foreach (var item in firtsTestResults)
+                    {
+                        InsertCell(row, firstStageresultsCount + 2,
+                            (item / 1000).ToString("N4"),
+                            CellValues.String, 6);
+                        firstStageresultsCount++;
+                    }
+
+
+                    row = new Row() { RowIndex = 8 };
+                    sheetData.Append(row);
+                    InsertCell(row, 1, "Среднее время, сек", CellValues.String, 5);
+                    InsertCell(row, 2, firtsTestResults.Count == 0 ? "0" : (firtsTestResults.Average() / 1000).ToString("N4"), CellValues.String, 5);
+
+                    row = new Row() { RowIndex = 9 };
+                    sheetData.Append(row);
+                    InsertCell(row, 1, "Количество ошибок", CellValues.String, 5);
+                    InsertCell(row, 2, testResults[0].ReactionTimes.Where(x => x.isTrue == false).Count().ToString(), CellValues.Number, 5);
+
+                    List<decimal> secondTestResults = new List<decimal>();
+                    int secondListCounter = 0;
+                    if(testResults.Count > 1)
+                    if (testResults[1].ReactionTimes != null && testResults[1].ReactionTimes.Count != 0)
+                    {
+                        testResults[1].ReactionTimes.Where(x => x.isTrue == true).ToList().ForEach(x => secondTestResults.Add(x.EndReactionTime - x.BeginReactionTime));
+                        row = new Row() { RowIndex = 10 };
+                        sheetData.Append(row);
+                        InsertCell(row, 1, "", CellValues.String, 5);
+
+                        row = new Row() { RowIndex = 11 };
+                        sheetData.Append(row);
+                        InsertCell(row, 1, "С нагрузкой", CellValues.String, 5);
+
+                        row = new Row() { RowIndex = 12 };
+                        sheetData.Append(row);
+                        InsertCell(row, 1, "№", CellValues.String, 6);
+                        for (int i = 0; i < secondTestResults.Count; i++)
+                        {
+                            InsertCell(row, i + 2, (i + 1).ToString(), CellValues.Number, 6);
+                        }
+                        row = new Row() { RowIndex = 13 };
+                        sheetData.Append(row);
+                        InsertCell(row, 1, "Результат, сек", CellValues.String, 6);
+                        int secondStageresultsCount = 0;
+                        foreach (var item in secondTestResults)
+                        {
+                            InsertCell(row, secondStageresultsCount + 2,
+                                (item / 1000).ToString(),
+                                CellValues.String, 6);
+                            secondStageresultsCount++;
+                        }
+
+
+                        row = new Row() { RowIndex = 14 };
+                        sheetData.Append(row);
+                        InsertCell(row, 1, "Среднее время, сек", CellValues.String, 5);
+                        InsertCell(row, 2, secondTestResults.Count == 0 ? "0" : (secondTestResults.Average() / 1000).ToString("N4"), CellValues.String, 5);
+
+                        row = new Row() { RowIndex = 15 };
+                        sheetData.Append(row);
+                        InsertCell(row, 1, "Количество ошибок", CellValues.String, 5);
+                        InsertCell(row, 2, testResults[1].ReactionTimes.Where(x => x.isTrue == false).Count().ToString(), CellValues.Number, 5);
+
+                    }
+                    //  row = new Row() { RowIndex = rowIndex + 1 };
+                    // sheetData.Append(row);
+                    workbookPart.Workbook.Save();
+                    document.Close();
                 }
-                using (FileStream output = new FileStream(saveFileDialog1.FileName, FileMode.Create))
-                {
-                    mem.CopyTo(output);
-                }
+                return mem.ToArray();
             }
-            
+
+        }
+
+        private void saveFileDialog1_FileOk(object sender, CancelEventArgs e)
+        {
+            byte[] reportData = GenetrateExcelReport();
+            using (FileStream fs = new FileStream(saveFileDialog1.FileName, FileMode.Create, FileAccess.Write))
+            {
+                fs.Write(reportData, 0, reportData.Length);
+            }
+          
         }
     }
 }
