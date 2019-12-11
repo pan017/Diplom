@@ -258,7 +258,9 @@ namespace Diplom.Forms
                     sheetData.Append(row);
                     InsertCell(row, 1, "Студент", CellValues.String, 5);
                     InsertCell(row, 2, testResults[0].TestPack.Profile.ToString(), CellValues.String, 5);
-
+                    InsertCell(row, 3, "", CellValues.String, 5);
+                    InsertCell(row, 4, "Пол", CellValues.String, 5);
+                    InsertCell(row, 5, testResults[0].TestPack.Profile.Gender.Name, CellValues.String, 5);
                     row = new Row() { RowIndex = 3 };
                     sheetData.Append(row);
                     InsertCell(row, 1, "Группа", CellValues.String, 5);
@@ -266,13 +268,27 @@ namespace Diplom.Forms
 
                     row = new Row() { RowIndex = 4 };
                     sheetData.Append(row);
-                    InsertCell(row, 1, "", CellValues.String, 5);
+                    InsertCell(row, 1, "Стаж", CellValues.String, 5);
+                    InsertCell(row, 2, testResults[0].TestPack.Profile.DriversLicense == null ? "0" : ((DateTime.Now - testResults[0].TestPack.Profile.DriversLicense.GettingDate).TotalDays / 365).ToString("N1"), CellValues.String, 5);
 
                     row = new Row() { RowIndex = 5 };
                     sheetData.Append(row);
-                    InsertCell(row, 1, "Без нагрузки", CellValues.String, 5);
+                    InsertCell(row, 1, "Дата тестирования", CellValues.String, 5);
+                    InsertCell(row, 2, testResults[0].TestPack.BeginTestDate.ToShortDateString(), CellValues.String, 5);
+                    InsertCell(row, 3, "", CellValues.String, 5);
+                    InsertCell(row, 4, "Время", CellValues.String, 5);
+                    InsertCell(row, 5, testResults[0].TestPack.BeginTestDate.ToLongTimeString(), CellValues.String, 5);
+
 
                     row = new Row() { RowIndex = 6 };
+                    sheetData.Append(row);
+                    InsertCell(row, 1, "", CellValues.String, 5);
+
+                    row = new Row() { RowIndex = 7 };
+                    sheetData.Append(row);
+                    InsertCell(row, 1, "Без нагрузки", CellValues.String, 5);
+
+                    row = new Row() { RowIndex = 8 };
                     sheetData.Append(row);
                     InsertCell(row, 1, "№", CellValues.String, 6);
                     List<decimal> firtsTestResults = new List<decimal>();
@@ -281,7 +297,7 @@ namespace Diplom.Forms
                     {
                         InsertCell(row, i+2, (i+1).ToString("N0"), CellValues.Number, 6);
                     }
-                    row = new Row() { RowIndex = 7 };
+                    row = new Row() { RowIndex = 9 };
                     sheetData.Append(row);
                     InsertCell(row, 1, "Результат, сек", CellValues.String, 6);
                     int firstStageresultsCount = 0;
@@ -294,12 +310,12 @@ namespace Diplom.Forms
                     }
 
 
-                    row = new Row() { RowIndex = 8 };
+                    row = new Row() { RowIndex = 10 };
                     sheetData.Append(row);
                     InsertCell(row, 1, "Среднее время, сек", CellValues.String, 5);
                     InsertCell(row, 2, firtsTestResults.Count == 0 ? "0" : (firtsTestResults.Average() / 1000).ToString("N4"), CellValues.String, 5);
 
-                    row = new Row() { RowIndex = 9 };
+                    row = new Row() { RowIndex = 11 };
                     sheetData.Append(row);
                     InsertCell(row, 1, "Количество ошибок", CellValues.String, 5);
                     InsertCell(row, 2, testResults[0].ReactionTimes.Where(x => x.isTrue == false).Count().ToString(), CellValues.Number, 5);
@@ -310,22 +326,22 @@ namespace Diplom.Forms
                     if (testResults[1].ReactionTimes != null && testResults[1].ReactionTimes.Count != 0)
                     {
                         testResults[1].ReactionTimes.Where(x => x.isTrue == true).ToList().ForEach(x => secondTestResults.Add(x.EndReactionTime - x.BeginReactionTime));
-                        row = new Row() { RowIndex = 10 };
+                        row = new Row() { RowIndex = 12 };
                         sheetData.Append(row);
                         InsertCell(row, 1, "", CellValues.String, 5);
 
-                        row = new Row() { RowIndex = 11 };
+                        row = new Row() { RowIndex = 13 };
                         sheetData.Append(row);
                         InsertCell(row, 1, "С нагрузкой", CellValues.String, 5);
 
-                        row = new Row() { RowIndex = 12 };
+                        row = new Row() { RowIndex = 14 };
                         sheetData.Append(row);
                         InsertCell(row, 1, "№", CellValues.String, 6);
                         for (int i = 0; i < secondTestResults.Count; i++)
                         {
                             InsertCell(row, i + 2, (i + 1).ToString(), CellValues.Number, 6);
                         }
-                        row = new Row() { RowIndex = 13 };
+                        row = new Row() { RowIndex = 15 };
                         sheetData.Append(row);
                         InsertCell(row, 1, "Результат, сек", CellValues.String, 6);
                         int secondStageresultsCount = 0;
@@ -338,12 +354,12 @@ namespace Diplom.Forms
                         }
 
 
-                        row = new Row() { RowIndex = 14 };
+                        row = new Row() { RowIndex = 16 };
                         sheetData.Append(row);
                         InsertCell(row, 1, "Среднее время, сек", CellValues.String, 5);
                         InsertCell(row, 2, secondTestResults.Count == 0 ? "0" : (secondTestResults.Average() / 1000).ToString("N4"), CellValues.String, 5);
 
-                        row = new Row() { RowIndex = 15 };
+                        row = new Row() { RowIndex = 17 };
                         sheetData.Append(row);
                         InsertCell(row, 1, "Количество ошибок", CellValues.String, 5);
                         InsertCell(row, 2, testResults[1].ReactionTimes.Where(x => x.isTrue == false).Count().ToString(), CellValues.Number, 5);
@@ -362,11 +378,17 @@ namespace Diplom.Forms
         private void saveFileDialog1_FileOk(object sender, CancelEventArgs e)
         {
             byte[] reportData = GenetrateExcelReport();
-            using (FileStream fs = new FileStream(saveFileDialog1.FileName, FileMode.Create, FileAccess.Write))
+            try
             {
-                fs.Write(reportData, 0, reportData.Length);
+                using (FileStream fs = new FileStream(saveFileDialog1.FileName, FileMode.Create, FileAccess.Write))
+                {
+                    fs.Write(reportData, 0, reportData.Length);
+                }
             }
-          
+            catch(Exception ex)
+            {
+                MessageBox.Show("Ошибка доступа к файлу. Возможно он занят другим процессом", "Ошибка");
+            }
         }
     }
 }

@@ -155,7 +155,8 @@ namespace Diplom.Forms
                 return;
             }
             if (testResults[0].ReactionTimes == null || testResults[0].ReactionTimes.Count == 0)
-            {               
+            {
+               
                 db.TestResult.Remove(testResults[0]);
                 db.SaveChanges();
                 MessageBox.Show("Данный тест не был пройден до конца. Просмотр результатов не возможен. Он будет удален.", "Ошибка");
@@ -185,11 +186,8 @@ namespace Diplom.Forms
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            var a = GenetrateExcelReport();
-            using (var fs = new FileStream(@"D:\Projects\Diplom\bin\Debug\Resourses\asdasdcxzczc.xlsx", FileMode.Create, FileAccess.Write))
-            {
-                fs.Write(a, 0, a.Length);         
-            }
+            saveFileDialog1.FileName = String.Format("Общий отчет_{0}", DateTime.Now.ToString("dd.MM.yyyy_HH.mm.ss"));
+            saveFileDialog1.ShowDialog();
         }
 
         byte[] GenetrateExcelReport()
@@ -252,7 +250,8 @@ namespace Diplom.Forms
                     InsertCell(row, 4, "Распределение внимания (РВ)", CellValues.String, 5);
                     ExcelHelper.InsertEmptyCell(row, 5, 9, CellValues.String, 5);
                     InsertCell(row, 10, "Время реакции", CellValues.String, 5);
-                    
+                    ExcelHelper.InsertEmptyCell(row, 11, 15, CellValues.String, 5);
+                    InsertCell(row, 16, "Бдительность", CellValues.String, 5);
 
 
                     row = new Row() { RowIndex = 2 };
@@ -273,6 +272,8 @@ namespace Diplom.Forms
                     InsertCell(row, 13, "Среднее время реагирования в задании №2 на зрительные стимулы (с)", CellValues.String, 5);
                     InsertCell(row, 14, "Количество правильных реагирований на зрительные стимулы в задании № 2", CellValues.String, 5);
                     InsertCell(row, 15, "Разница количества правильных ответов  на зрительные стимулы между заданием № 1 и заданием №2:", CellValues.String, 5);
+                    InsertCell(row, 16, "Среднее время реагирования (с)", CellValues.String, 5);
+                    InsertCell(row, 17, "Количество правильных ответов на зрительные стимулы", CellValues.String, 5);
 
 
                     row.CustomHeight = true;
@@ -287,7 +288,7 @@ namespace Diplom.Forms
 
                         InsertCell(row, 1, item.Profile.ToString(), CellValues.String, 5);
                         InsertCell(row, 2, item.Profile.Group.Name, CellValues.String, 5);
-                        InsertCell(row, 3, item.Profile.DriversLicense == null ? "0" : ((DateTime.Now - item.Profile.DriversLicense.GettingDate).TotalDays /365).ToString("N2"), CellValues.String, 5);
+                        InsertCell(row, 3, item.Profile.DriversLicense == null ? "0" : ((DateTime.Now - item.Profile.DriversLicense.GettingDate).TotalDays /365).ToString("N1"), CellValues.String, 5);
 
                         var currentTestResultsList = db.TestResult.Where(x => x.TestPack.id == item.id && x.TestPack.TestType.TestTypeIndex == 0).OrderBy(x => x.CreatonDate).ToList();
                         if (currentTestResultsList.Count() != 0)
@@ -375,7 +376,7 @@ namespace Diplom.Forms
                                 {
                                     var reactions2 = currentTestResultsList.First(x => x.TestStage.TestStageIndex == 1).ReactionTimes;
                                     List<decimal> reactionList2 = new List<decimal>();
-                                    reactions.ForEach(x => reactionList2.Add(x.EndReactionTime - x.BeginReactionTime));
+                                    reactions2.ForEach(x => reactionList2.Add(x.EndReactionTime - x.BeginReactionTime));
                                     if (reactionList2.Count() != 0)
                                     {
                                         InsertCell(row, 12, ((reactionList.Average() / 1000) - (reactionList2.Average() / 1000)).ToString("N3"), CellValues.String, 5);
@@ -423,6 +424,28 @@ namespace Diplom.Forms
                             InsertCell(row, 14, "", CellValues.String, 5);
                             InsertCell(row, 15, "", CellValues.String, 5);
                         }
+                        currentTestResultsList = db.TestResult.Where(x => x.TestPack.id == item.id && x.TestPack.TestType.TestTypeIndex == 2).OrderBy(x => x.CreatonDate).ToList();
+                        if (currentTestResultsList.Count() != 0)
+                        {
+                            if (currentTestResultsList.First().ReactionTimes.Count != 0)
+                            {
+                                var reactions = currentTestResultsList.First().ReactionTimes;
+                                List<decimal> reactionList = new List<decimal>();
+                                reactions.ForEach(x => reactionList.Add(x.EndReactionTime - x.BeginReactionTime));
+                                InsertCell(row, 16, (reactionList.Average() / 1000).ToString("N3"), CellValues.String, 5);
+                                InsertCell(row, 17, reactions.Count(x => x.isTrue == true).ToString(), CellValues.String, 5);
+                            }
+                            else
+                            {
+                                InsertCell(row, 16, "", CellValues.String, 5);
+                                InsertCell(row, 17, "", CellValues.String, 5);
+                            }
+                        }
+                        else
+                        {
+                            InsertCell(row, 16, "", CellValues.String, 5);
+                            InsertCell(row, 17, "", CellValues.String, 5);
+                        }
                         rowIndex++;
                     }
                     //  row = new Row() { RowIndex = rowIndex + 1 };
@@ -444,6 +467,22 @@ namespace Diplom.Forms
             newCell.CellValue = new CellValue(val);
             newCell.DataType = new EnumValue<CellValues>(type);
 
+        }
+
+        private void saveFileDialog1_FileOk(object sender, CancelEventArgs e)
+        {
+            byte[] reportData = GenetrateExcelReport();
+            try
+            {
+                using (FileStream fs = new FileStream(saveFileDialog1.FileName, FileMode.Create, FileAccess.Write))
+                {
+                    fs.Write(reportData, 0, reportData.Length);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка доступа к файлу. Возможно он занят другим процессом", "Ошибка");
+            }
         }
     }
 }
