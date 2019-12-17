@@ -19,7 +19,7 @@ namespace Diplom.Forms.Tests
         public ReactionTimeForm()
         {
             InitializeComponent();
-            TesteeComboBox.Items.AddRange(db.Profile.ToArray());
+            TesteeComboBox.Items.AddRange(db.Profile.OrderBy(x => x.Name).ToArray());
             random = new Random(DateTime.Now.Millisecond);
         }
 

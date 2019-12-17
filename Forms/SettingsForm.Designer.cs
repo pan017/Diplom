@@ -31,8 +31,6 @@
             this.SaveButton = new System.Windows.Forms.Button();
             this.FirstTestTrys = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.CognitiveLoadComboBox = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.FirstTestTrys)).BeginInit();
             this.SuspendLayout();
             // 
@@ -49,6 +47,11 @@
             // FirstTestTrys
             // 
             this.FirstTestTrys.Location = new System.Drawing.Point(12, 26);
+            this.FirstTestTrys.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
             this.FirstTestTrys.Name = "FirstTestTrys";
             this.FirstTestTrys.Size = new System.Drawing.Size(120, 20);
             this.FirstTestTrys.TabIndex = 1;
@@ -62,34 +65,11 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Время теста, сек";
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(9, 49);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(121, 13);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Когнитивная нагрузка";
-            // 
-            // CognitiveLoadComboBox
-            // 
-            this.CognitiveLoadComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CognitiveLoadComboBox.FormattingEnabled = true;
-            this.CognitiveLoadComboBox.Items.AddRange(new object[] {
-            "Да",
-            "Нет"});
-            this.CognitiveLoadComboBox.Location = new System.Drawing.Point(12, 65);
-            this.CognitiveLoadComboBox.Name = "CognitiveLoadComboBox";
-            this.CognitiveLoadComboBox.Size = new System.Drawing.Size(121, 21);
-            this.CognitiveLoadComboBox.TabIndex = 4;
-            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(317, 182);
-            this.Controls.Add(this.CognitiveLoadComboBox);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.FirstTestTrys);
             this.Controls.Add(this.SaveButton);
@@ -107,7 +87,5 @@
         private System.Windows.Forms.Button SaveButton;
         private System.Windows.Forms.NumericUpDown FirstTestTrys;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox CognitiveLoadComboBox;
     }
 }

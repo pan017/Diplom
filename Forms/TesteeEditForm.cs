@@ -94,6 +94,16 @@ namespace Diplom.Forms
                 MessageBox.Show("Не выбранно не одной категории прав!", "Ошибка");
                 return;
             }
+            if (FirstNameTextBox.Text.Length == 0)
+            {
+                MessageBox.Show("Имя не может быть пустым!", "Ошибка");
+                return;
+            }
+            if (NameTextBox.Text.Length == 0)
+            {
+                MessageBox.Show("Фамилия не может быть пустой!", "Ошибка");
+                return;
+            }
             Group group;
             if (db.Group.Where(x => x.Name == GroupsCombobBox.Text).ToList().Count == 0)
             {

@@ -111,7 +111,7 @@ namespace Diplom.Forms.Tests
             isRunning = false;
             random = new Random(DateTime.Now.Millisecond);
             reactionTimes = new List<ReactionTime>();
-            TesteeComboBox.Items.AddRange(db.Profile.ToArray());
+            TesteeComboBox.Items.AddRange(db.Profile.OrderBy(x => x.Name).ToArray());
         }
 
         private void BaseTestForm_Load(object sender, EventArgs e)

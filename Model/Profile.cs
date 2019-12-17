@@ -26,6 +26,10 @@ namespace Diplom.Model
 
         public override string ToString()
         {
+            if (String.IsNullOrEmpty(LastName))
+            {
+                return String.Format("{0} {1}.", Name, FirstName.First());
+            }
             return String.Format("{0} {1}.{2}.", Name, FirstName.First(), LastName.First());
         }
     }

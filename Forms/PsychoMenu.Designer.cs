@@ -30,13 +30,6 @@
         {
             this.TesteeButton = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.SettingsMenuStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.настройкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -49,13 +42,19 @@
             this.ролиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.типыТестовToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CognitiveLoadMenuStrip = new System.Windows.Forms.ToolStripMenuItem();
-            this.пользователиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.тестыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ReactionTimeMenuStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.DistributionOfAttentionMenuStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.ShowDiagramButton = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.AlertnessTestMenuStrip = new System.Windows.Forms.ToolStripMenuItem();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -80,62 +79,22 @@
             this.Column2,
             this.Column3,
             this.Column4,
-            this.Column5,
-            this.Column6});
+            this.Column5});
             this.dataGridView1.Location = new System.Drawing.Point(12, 56);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(812, 382);
+            this.dataGridView1.Size = new System.Drawing.Size(756, 382);
             this.dataGridView1.TabIndex = 6;
             this.dataGridView1.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentDoubleClick);
-            // 
-            // Id
-            // 
-            this.Id.HeaderText = "Id";
-            this.Id.Name = "Id";
-            this.Id.Visible = false;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "ФИО";
-            this.Column1.Name = "Column1";
-            this.Column1.Width = 200;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Группа";
-            this.Column2.Name = "Column2";
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Тест";
-            this.Column3.Name = "Column3";
-            this.Column3.Width = 150;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Дата начала";
-            this.Column4.Name = "Column4";
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "Дата окончания";
-            this.Column5.Name = "Column5";
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "Оценка";
-            this.Column6.Name = "Column6";
             // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.SettingsMenuStrip,
             this.справочникиToolStripMenuItem,
-            this.пользователиToolStripMenuItem,
             this.тестыToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(829, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(775, 24);
             this.menuStrip1.TabIndex = 9;
             this.menuStrip1.Text = "mainMenuStrip";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -224,17 +183,12 @@
             this.CognitiveLoadMenuStrip.Text = "Вопросы когнитивной нагрузки";
             this.CognitiveLoadMenuStrip.Click += new System.EventHandler(this.CognitiveLoadMenuStrip_Click);
             // 
-            // пользователиToolStripMenuItem
-            // 
-            this.пользователиToolStripMenuItem.Name = "пользователиToolStripMenuItem";
-            this.пользователиToolStripMenuItem.Size = new System.Drawing.Size(97, 20);
-            this.пользователиToolStripMenuItem.Text = "Пользователи";
-            // 
             // тестыToolStripMenuItem
             // 
             this.тестыToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ReactionTimeMenuStrip,
-            this.DistributionOfAttentionMenuStrip});
+            this.DistributionOfAttentionMenuStrip,
+            this.AlertnessTestMenuStrip});
             this.тестыToolStripMenuItem.Name = "тестыToolStripMenuItem";
             this.тестыToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
             this.тестыToolStripMenuItem.Text = "Тесты";
@@ -255,7 +209,7 @@
             // 
             // ShowDiagramButton
             // 
-            this.ShowDiagramButton.Location = new System.Drawing.Point(680, 27);
+            this.ShowDiagramButton.Location = new System.Drawing.Point(624, 27);
             this.ShowDiagramButton.Name = "ShowDiagramButton";
             this.ShowDiagramButton.Size = new System.Drawing.Size(144, 23);
             this.ShowDiagramButton.TabIndex = 11;
@@ -265,7 +219,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(555, 27);
+            this.button1.Location = new System.Drawing.Point(499, 27);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(119, 23);
             this.button1.TabIndex = 12;
@@ -279,11 +233,54 @@
             this.saveFileDialog1.Filter = "Excel files(*.xlsx)|*.xlsx|All files(*.*)|*.*";
             this.saveFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialog1_FileOk);
             // 
+            // AlertnessTestMenuStrip
+            // 
+            this.AlertnessTestMenuStrip.Name = "AlertnessTestMenuStrip";
+            this.AlertnessTestMenuStrip.Size = new System.Drawing.Size(216, 22);
+            this.AlertnessTestMenuStrip.Text = "Бдительность";
+            this.AlertnessTestMenuStrip.Click += new System.EventHandler(this.AlertnessTestMenuStrip_Click);
+            // 
+            // Id
+            // 
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            this.Id.Visible = false;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "ФИО";
+            this.Column1.Name = "Column1";
+            this.Column1.Width = 200;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Группа";
+            this.Column2.Name = "Column2";
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Тест";
+            this.Column3.Name = "Column3";
+            this.Column3.Width = 150;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "Дата начала";
+            this.Column4.Name = "Column4";
+            this.Column4.Width = 120;
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "Дата окончания";
+            this.Column5.Name = "Column5";
+            this.Column5.Width = 120;
+            // 
             // PsychoMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(829, 450);
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ClientSize = new System.Drawing.Size(775, 450);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.ShowDiagramButton);
             this.Controls.Add(this.dataGridView1);
@@ -316,21 +313,20 @@
         private System.Windows.Forms.ToolStripMenuItem EducationsMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem ролиToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem типыТестовToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem пользователиToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem CognitiveLoadMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem настройкиToolStripMenuItem;
         private System.Windows.Forms.Button ShowDiagramButton;
         private System.Windows.Forms.ToolStripMenuItem тестыToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ReactionTimeMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem DistributionOfAttentionMenuStrip;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.ToolStripMenuItem AlertnessTestMenuStrip;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }

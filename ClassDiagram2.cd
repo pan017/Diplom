@@ -1,0 +1,251 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Diplom.Service.ExcelHelper">
+    <Position X="11.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAA=</HashCode>
+      <FileName>Service\ExcelHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diplom.Service.DBInit">
+    <Position X="11.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Service\DBInit.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diplom.Model.ViewModel">
+    <Position X="9.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQBAEAAAAEgAACAECAAAAAAAAAQAAAAABRgCAAAAAA=</HashCode>
+      <FileName>Model\ViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diplom.Model.Profile">
+    <Position X="13.5" Y="0.5" Width="1.5" />
+    <InheritanceLine Type="Diplom.Model.Base.BaseObject" ManuallyRouted="true" FixedFromPoint="true">
+      <Path>
+        <Point X="18" Y="4.5" />
+        <Point X="14.25" Y="4.5" />
+        <Point X="14.25" Y="4.108" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAACAAAACEAAAAAAQCAAAAAAAAAARgIAAAAAg=</HashCode>
+      <FileName>Model\Profile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diplom.Model.TestPack">
+    <Position X="21" Y="0.5" Width="1.5" />
+    <InheritanceLine Type="Diplom.Model.Base.BaseObject" ManuallyRouted="true" FixedFromPoint="true">
+      <Path>
+        <Point X="18.875" Y="3" />
+        <Point X="18.875" Y="2.462" />
+        <Point X="21.75" Y="2.462" />
+        <Point X="21.75" Y="2.31" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAIAAAAAAAAAABQAAAAAAAA=</HashCode>
+      <FileName>Model\TestPack.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diplom.Model.TestResults">
+    <Position X="24.5" Y="0.5" Width="1.5" />
+    <InheritanceLine Type="Diplom.Model.Base.BaseObject" ManuallyRouted="true" FixedFromPoint="true">
+      <Path>
+        <Point X="19.5" Y="3.5" />
+        <Point X="24.125" Y="3.5" />
+        <Point X="24.125" Y="1.727" />
+        <Point X="24.5" Y="1.727" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAEAAAAAACAAAAIAAAAAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>Model\TestResults.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diplom.Model.User">
+    <Position X="16" Y="0.5" Width="1.5" />
+    <InheritanceLine Type="Diplom.Model.Base.BaseObject" ManuallyRouted="true" FixedFromPoint="true">
+      <Path>
+        <Point X="18" Y="4" />
+        <Point X="16.75" Y="4" />
+        <Point X="16.75" Y="2.502" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAAAAAAQAAAAACARAAAAAAAAA=</HashCode>
+      <FileName>Model\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diplom.Model.Base.BaseObject">
+    <Position X="18" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Model\Base\BaseObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diplom.Model.Base.BaseLookup" Collapsed="true">
+    <Position X="18" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Base\BaseLookup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diplom.Model.Lookups.CognetiveLoadType" Collapsed="true">
+    <Position X="11.75" Y="9.75" Width="1.5" />
+    <InheritanceLine Type="Diplom.Model.Base.BaseLookup" ManuallyRouted="true" FixedFromPoint="true">
+      <Path>
+        <Point X="18.25" Y="7.441" />
+        <Point X="18.25" Y="8.089" />
+        <Point X="12.5" Y="8.089" />
+        <Point X="12.5" Y="9.75" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Lookups\CognetiveLoadTypeLookup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diplom.Model.Lookups.CognitiveLoad">
+    <Position X="25.25" Y="11.25" Width="1.5" />
+    <InheritanceLine Type="Diplom.Model.Base.BaseLookup" ManuallyRouted="true" FixedFromPoint="true">
+      <Path>
+        <Point X="19.375" Y="7.441" />
+        <Point X="19.375" Y="8.105" />
+        <Point X="23.301" Y="8.105" />
+        <Point X="23.301" Y="10.212" />
+        <Point X="26" Y="10.212" />
+        <Point X="26" Y="11.25" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Lookups\CognitiveLoadLookup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diplom.Model.Lookups.DriversLicense">
+    <Position X="26.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Model\Lookups\DriversLicense.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diplom.Model.Lookups.Education" Collapsed="true">
+    <Position X="12.25" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Lookups\Education.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diplom.Model.Lookups.FamilyState" Collapsed="true">
+    <Position X="14.75" Y="11" Width="1.5" />
+    <InheritanceLine Type="Diplom.Model.Base.BaseLookup" ManuallyRouted="true" FixedFromPoint="true">
+      <Path>
+        <Point X="18.438" Y="7.441" />
+        <Point X="18.438" Y="8.913" />
+        <Point X="15.5" Y="8.913" />
+        <Point X="15.5" Y="11" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Lookups\FamilyState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diplom.Model.Lookups.Gender" Collapsed="true">
+    <Position X="18" Y="9.5" Width="1.5" />
+    <InheritanceLine Type="Diplom.Model.Base.BaseLookup" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="18.688" Y="7.441" />
+        <Point X="18.688" Y="9.5" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Lookups\Gender.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diplom.Model.Lookups.Group" Collapsed="true">
+    <Position X="24.75" Y="8.75" Width="1.5" />
+    <InheritanceLine Type="Diplom.Model.Base.BaseLookup" ManuallyRouted="true" FixedFromPoint="true">
+      <Path>
+        <Point X="19.5" Y="7.312" />
+        <Point X="25.5" Y="7.312" />
+        <Point X="25.5" Y="8.75" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Lookups\Group.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diplom.Model.Lookups.ReactionTime">
+    <Position X="27" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAAAAAAAQAACAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Lookups\ReactionTime.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diplom.Model.Lookups.Role" Collapsed="true">
+    <Position X="22.75" Y="5" Width="1.5" />
+    <InheritanceLine Type="Diplom.Model.Base.BaseLookup" FixedFromPoint="true">
+      <Path>
+        <Point X="19" Y="6.75" />
+        <Point X="19" Y="6.066" />
+        <Point X="23.5" Y="6.066" />
+        <Point X="23.5" Y="5.691" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Lookups\Role.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diplom.Model.Lookups.TestStage">
+    <Position X="14.5" Y="4.75" Width="1.5" />
+    <InheritanceLine Type="Diplom.Model.Base.BaseLookup" FixedFromPoint="true">
+      <Path>
+        <Point X="18.5" Y="6.75" />
+        <Point X="18.5" Y="6.358" />
+        <Point X="15.25" Y="6.358" />
+        <Point X="15.25" Y="5.983" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Lookups\TestStage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diplom.Model.Lookups.TestType">
+    <Position X="21" Y="11" Width="1.5" />
+    <InheritanceLine Type="Diplom.Model.Base.BaseLookup" ManuallyRouted="true" FixedFromPoint="true">
+      <Path>
+        <Point X="18.938" Y="7.441" />
+        <Point X="18.938" Y="8.75" />
+        <Point X="21.75" Y="8.75" />
+        <Point X="21.75" Y="11" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Lookups\TestType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="Diplom.Model.Colors">
+    <Position X="9.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAGAABAAACAAJAAAAAABAAAAAAAAAAAAAAAADAAAAA=</HashCode>
+      <FileName>Model\ImagePropertys.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Diplom.Model.Figure">
+    <Position X="11.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAgAAAAAgAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>Model\ImagePropertys.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -38,7 +38,7 @@ namespace Diplom.Forms.Tests
         public DistributionOfAttention()
         {
             InitializeComponent();
-            TesteeComboBox.Items.AddRange(db.Profile.ToArray());
+            TesteeComboBox.Items.AddRange(db.Profile.OrderBy(x => x.Name).ToArray());
             random = new Random(DateTime.Now.Millisecond);
             images = new List<ImagesForDOA>();
             System.IO.Directory.GetFiles(@"Resourses\1\").ToList().ForEach(x => images.Add(new ImagesForDOA(x)));

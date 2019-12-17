@@ -351,6 +351,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram2.cd" />
     <None Include="Diplom_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Diplom.Model.Lookups.Education.datasource" />

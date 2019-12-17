@@ -78,9 +78,9 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(593, 307);
+            this.button1.Location = new System.Drawing.Point(562, 377);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(151, 23);
             this.button1.TabIndex = 0;
             this.button1.Text = "Сохранить";
             this.button1.UseVisualStyleBackColor = true;
@@ -186,6 +186,7 @@
             // 
             this.GenderComboBox.DataSource = this.genderBindingSource;
             this.GenderComboBox.DisplayMember = "Name";
+            this.GenderComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.GenderComboBox.FormattingEnabled = true;
             this.GenderComboBox.Location = new System.Drawing.Point(197, 80);
             this.GenderComboBox.Name = "GenderComboBox";
@@ -445,7 +446,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1048, 521);
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ClientSize = new System.Drawing.Size(730, 421);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);

@@ -31,10 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.AddTesteeButton = new System.Windows.Forms.Button();
-            this.EditTesteeButton = new System.Windows.Forms.Button();
-            this.DeleteTesteeButton = new System.Windows.Forms.Button();
-            this.profileBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.firstNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -46,6 +42,10 @@
             this.familyStateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.phoneDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.profileBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.AddTesteeButton = new System.Windows.Forms.Button();
+            this.EditTesteeButton = new System.Windows.Forms.Button();
+            this.DeleteTesteeButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.profileBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -74,39 +74,6 @@
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentDoubleClick);
-            // 
-            // AddTesteeButton
-            // 
-            this.AddTesteeButton.Location = new System.Drawing.Point(12, 408);
-            this.AddTesteeButton.Name = "AddTesteeButton";
-            this.AddTesteeButton.Size = new System.Drawing.Size(75, 23);
-            this.AddTesteeButton.TabIndex = 1;
-            this.AddTesteeButton.Text = "Добавить";
-            this.AddTesteeButton.UseVisualStyleBackColor = true;
-            this.AddTesteeButton.Click += new System.EventHandler(this.AddTesteeButton_Click);
-            // 
-            // EditTesteeButton
-            // 
-            this.EditTesteeButton.Location = new System.Drawing.Point(93, 408);
-            this.EditTesteeButton.Name = "EditTesteeButton";
-            this.EditTesteeButton.Size = new System.Drawing.Size(75, 23);
-            this.EditTesteeButton.TabIndex = 2;
-            this.EditTesteeButton.Text = "Изменить";
-            this.EditTesteeButton.UseVisualStyleBackColor = true;
-            this.EditTesteeButton.Click += new System.EventHandler(this.EditTesteeButton_Click);
-            // 
-            // DeleteTesteeButton
-            // 
-            this.DeleteTesteeButton.Location = new System.Drawing.Point(174, 408);
-            this.DeleteTesteeButton.Name = "DeleteTesteeButton";
-            this.DeleteTesteeButton.Size = new System.Drawing.Size(75, 23);
-            this.DeleteTesteeButton.TabIndex = 3;
-            this.DeleteTesteeButton.Text = "Удалить";
-            this.DeleteTesteeButton.UseVisualStyleBackColor = true;
-            // 
-            // profileBindingSource
-            // 
-            this.profileBindingSource.DataSource = typeof(Diplom.Model.Profile);
             // 
             // id
             // 
@@ -178,10 +145,44 @@
             this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
             this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
             // 
+            // profileBindingSource
+            // 
+            this.profileBindingSource.DataSource = typeof(Diplom.Model.Profile);
+            // 
+            // AddTesteeButton
+            // 
+            this.AddTesteeButton.Location = new System.Drawing.Point(12, 408);
+            this.AddTesteeButton.Name = "AddTesteeButton";
+            this.AddTesteeButton.Size = new System.Drawing.Size(75, 23);
+            this.AddTesteeButton.TabIndex = 1;
+            this.AddTesteeButton.Text = "Добавить";
+            this.AddTesteeButton.UseVisualStyleBackColor = true;
+            this.AddTesteeButton.Click += new System.EventHandler(this.AddTesteeButton_Click);
+            // 
+            // EditTesteeButton
+            // 
+            this.EditTesteeButton.Location = new System.Drawing.Point(93, 408);
+            this.EditTesteeButton.Name = "EditTesteeButton";
+            this.EditTesteeButton.Size = new System.Drawing.Size(75, 23);
+            this.EditTesteeButton.TabIndex = 2;
+            this.EditTesteeButton.Text = "Изменить";
+            this.EditTesteeButton.UseVisualStyleBackColor = true;
+            this.EditTesteeButton.Click += new System.EventHandler(this.EditTesteeButton_Click);
+            // 
+            // DeleteTesteeButton
+            // 
+            this.DeleteTesteeButton.Location = new System.Drawing.Point(174, 408);
+            this.DeleteTesteeButton.Name = "DeleteTesteeButton";
+            this.DeleteTesteeButton.Size = new System.Drawing.Size(75, 23);
+            this.DeleteTesteeButton.TabIndex = 3;
+            this.DeleteTesteeButton.Text = "Удалить";
+            this.DeleteTesteeButton.UseVisualStyleBackColor = true;
+            // 
             // TesteeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(1102, 450);
             this.Controls.Add(this.DeleteTesteeButton);
             this.Controls.Add(this.EditTesteeButton);

@@ -484,5 +484,11 @@ namespace Diplom.Forms
                 MessageBox.Show("Ошибка доступа к файлу. Возможно он занят другим процессом", "Ошибка");
             }
         }
+
+        private void AlertnessTestMenuStrip_Click(object sender, EventArgs e)
+        {
+            AlertnessTestForm alertnessTestForm = new AlertnessTestForm();
+            alertnessTestForm.ShowDialog();
+        }
     }
 }
